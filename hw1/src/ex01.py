@@ -54,12 +54,12 @@ def estimate_parameters(dataset):
     µ_y3_y4[1] = np.sum(y3_y4[h == 1], axis = 0) / y3_y4[h == 1].shape[0]
     print(colored(f"µ y3, y4|(h = 1) = {µ_y3_y4[1]}", "magenta"))
 
-    aux_y3_y4_h0 = np.apply_along_axis(lambda row: np.atleast_2d(row - µ_y3_y4[0]).T.dot(np.atleast_2d(row - µ_y3_y4[0])), 1, y3_y4)
-    Σ_y3_y4[0] = np.apply_along_axis(np.mean, 0, aux_y3_y4_h0)
+    aux_y3_y4_h0 = np.apply_along_axis(lambda row: np.atleast_2d(row - µ_y3_y4[0]).T.dot(np.atleast_2d(row - µ_y3_y4[0])), 1, y3_y4[h == 0])
+    Σ_y3_y4[0] = np.apply_along_axis(np.sum, 0, aux_y3_y4_h0) / (y3_y4[h == 0].shape[0] - 1)
     print(colored(f"Σ y3, y4|(h = 0) = {Σ_y3_y4[0]}", "magenta"))
 
-    aux_y3_y4_h1 = np.apply_along_axis(lambda row: np.atleast_2d(row - µ_y3_y4[1]).T.dot(np.atleast_2d(row - µ_y3_y4[1])), 1, y3_y4)
-    Σ_y3_y4[1] = np.apply_along_axis(np.mean, 0, aux_y3_y4_h1)
+    aux_y3_y4_h1 = np.apply_along_axis(lambda row: np.atleast_2d(row - µ_y3_y4[1]).T.dot(np.atleast_2d(row - µ_y3_y4[1])), 1,  y3_y4[h == 1])
+    Σ_y3_y4[1] = np.apply_along_axis(np.sum, 0, aux_y3_y4_h1) / (y3_y4[h == 1].shape[0] - 1)
     print(colored(f"Σ y3, y4|(h = 0) = {Σ_y3_y4[1]}", "magenta"))
 
     print(colored("P(y2 | h) estimates", "green", attrs = ["bold"]))
