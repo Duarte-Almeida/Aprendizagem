@@ -43,7 +43,7 @@ def estimate_parameters(dataset):
     σ_y1[0] = np.sum((y1[h == 0] -  µ_y1[0]) ** 2) / (y1[h == 0].shape[0] - 1)
     print(colored(f"σ y1|(h = 0) = {round(σ_y1[0], 4)}", "magenta"))
 
-    σ_y1[1] = np.sum((y1[h == 1] -[1]) ** 2) / (y1[h == 1].shape[0] - 1)
+    σ_y1[1] = np.sum((y1[h == 1] - µ_y1[1]) ** 2) / (y1[h == 1].shape[0] - 1)
     print(colored(f"σ y1|(h = 1) = {round(σ_y1[1], 4)}", "magenta"))
 
     print(colored("y3, y4|h estimates", "green", attrs = ["bold"]))
