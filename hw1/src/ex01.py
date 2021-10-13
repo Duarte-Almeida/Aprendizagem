@@ -55,12 +55,12 @@ def estimate_parameters(dataset):
     print(colored(f"µ y3, y4|(h = 1) = {µ_y3_y4[1]}", "magenta"))
 
     aux_y3_y4_h0 = np.apply_along_axis(lambda row: np.atleast_2d(row - µ_y3_y4[0]).T.dot(np.atleast_2d(row - µ_y3_y4[0])), 1, y3_y4)
-    Σ_y3_y4[0] = np.apply_along_axis(np.sum, 0, aux_y3_y4_h0) 
-    print(colored(f"Σ y3, y4|(h = 0) = {round(σ_y1[0], 4)}", "magenta"))
+    Σ_y3_y4[0] = np.apply_along_axis(np.mean, 0, aux_y3_y4_h0)
+    print(colored(f"Σ y3, y4|(h = 0) = {Σ_y3_y4[0]}", "magenta"))
 
     aux_y3_y4_h1 = np.apply_along_axis(lambda row: np.atleast_2d(row - µ_y3_y4[1]).T.dot(np.atleast_2d(row - µ_y3_y4[1])), 1, y3_y4)
-    Σ_y3_y4[1] = np.apply_along_axis(np.sum, 0, aux_y3_y4_h1) 
-    print(colored(f"Σ y3, y4|(h = 1) = {round(σ_y1[1], 4)}", "magenta"))
+    Σ_y3_y4[1] = np.apply_along_axis(np.mean, 0, aux_y3_y4_h1)
+    print(colored(f"Σ y3, y4|(h = 0) = {Σ_y3_y4[1]}", "magenta"))
 
     print(colored("P(y2 | h) estimates", "green", attrs = ["bold"]))
     p_y2[0]["A"] = np.mean(np.vectorize(lambda x : 1 if x == "A" else 0)(y2[h == 0]))
