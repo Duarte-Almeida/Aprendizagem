@@ -19,9 +19,10 @@ def read_data(filename):
     return dataset
 
 # estimate parameters of :
-# - y1 | h ~ N(µ_y3_y4, Σ_y3_y4)
-#
-#
+# - y1 | h ~ N(µ_y1, σ_y1)
+#   y2 | h ~ categorical(pA, pB, pC, pD)
+#   y3, y4 | h ~ N(µ_y3_y4, Σ_y3_y4)
+#   h ~ bernoulli(p)
 def estimate_parameters(dataset):
 
     y1 = np.array(dataset["y1"])
@@ -83,6 +84,8 @@ def estimate_parameters(dataset):
     print(colored("h estimates", "green", attrs = ["bold"]))
     print(colored(f"P(h = 1) = {np.mean(h)} \nP(h = 0) = {1 - np.mean(h)}", "magenta"))
 
+# make a prediction for each data instance, and output a .csv
+# containing each probability value, the posterior and the outputs and predictions
 def estimate_instances(dataset):
 
     print(colored("Classifying instances", "yellow", attrs = ["bold"]))
@@ -97,20 +100,25 @@ def estimate_instances(dataset):
     p_y2_h1 = np.apply_along_axis(lambda instance: p_y2[1][instance[1]], 1, inputs)
     p_y3_y4_h1 = np.apply_along_axis(lambda instance: stats.multivariate_normal(mean = µ_y3_y4[1], cov = Σ_y3_y4[1]).pdf(np.array([instance[2], instance[3]])), 1, inputs)
     
-    posterior_h0 = p_y1_h0 * p_y2_h0 * p_y3_y4_h0 * p_h[0]
-    posterior_h1 = p_y1_h1 * p_y2_h1 * p_y3_y4_h1 * p_h[1]
+    p_h0_x_new = p_y1_h0 * p_y2_h0 * p_y3_y4_h0 * p_h[0]
+    p_h1_x_new = p_y1_h1 * p_y2_h1 * p_y3_y4_h1 * p_h[1]
 
-    #posterior_h0 = np.apply_along_axis(lambda instance: bayesian_classification(instance, 0), 1, inputs)
+    p_h0_given_x_new = p_h0_x_new / (p_h0_x_new + p_h1_x_new)
+    p_h1_given_x_new = p_h1_x_new / (p_h0_x_new + p_h1_x_new)
+
+    #p_h0_x_new = np.apply_along_axis(lambda instance: bayesian_classification(instance, 0), 1, inputs)
     #posterior_h1 = np.apply_along_axis(lambda instance: bayesian_classification(instance, 1), 1, inputs)
     
-    estimates = np.vectorize(lambda x: 0 if x == True else 1)(posterior_h0 > posterior_h1)
-    
+    estimates = np.vectorize(lambda x: 0 if x == True else 1)(p_h0_given_x_new > p_h1_given_x_new)
+
+    probabilities = np.column_stack((outputs, p_y1_h0, p_y2_h0, p_y3_y4_h0, p_h0_x_new, p_y1_h1, p_y2_h1, p_y3_y4_h1, p_h1_x_new, p_h0_given_x_new, p_h1_given_x_new, estimates))
+
     # save whole thing to csv
-    estimates_df = pd.DataFrame(np.concatenate((inputs, np.column_stack((outputs, p_y1_h0, p_y2_h0, p_y3_y4_h0, posterior_h1, p_y1_h1, p_y2_h1, p_y3_y4_h1, posterior_h1, estimates))), 1), index = [f"x{i}" for i in range(1, outputs.shape[0] + 1)], columns = ["y1", "y2", "y3", "y4", "Class", "p_y1_h0", "p_y2_h0", "p_y3_y4_h0", "posterior_h0", "p_y1_h1", "p_y2_h1", "p_y3_y4_h1", "posterior_h1", "Estimate"])
+    estimates_df = pd.DataFrame(np.concatenate((inputs, probabilities), 1), index = [f"x{i}" for i in range(1, outputs.shape[0] + 1)], columns = ["y1", "y2", "y3", "y4", "Class", "p_y1_h0", "p_y2_h0", "p_y3_y4_h0", "p_h0_x_new", "p_y1_h1", "p_y2_h1", "p_y3_y4_h1", "p_h1_x_new", "p_h0_given_x_new", "p_h1_given_x_new", "Estimate"])
     print(estimates_df)
     estimates_df.to_csv("output/results.csv")
 
-
+# calculate p(h, x) = p(x | h)p(h) for each data instance
 def bayesian_classification(instance, hipothesys):
     return stats.norm.pdf(instance[0], loc = µ_y1[hipothesys], scale = np.sqrt(σ_y1[hipothesys])) * \
            p_y2[hipothesys][instance[1]] * \
