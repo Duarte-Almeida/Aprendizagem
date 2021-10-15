@@ -16,18 +16,16 @@ def load_data(filename):
     return dataset
 
 def plot_histograms(dataset):
-
-    bins = np.linspace(0, 10, 4)
-    print(bins)
+    bins = np.linspace(1, 11, 11)
     for feature in dataset.columns[:-1]:
         label = feature.replace("_", "\:")
-        _ = plt.hist(dataset[dataset["Class"] == "benign"][feature], bins = bins, density = True, label = f"$p(\mathrm{{{label}|\: Class = benign}})$", alpha = 0.5)
-        _ = plt.hist(dataset[dataset["Class"] == "malignant"][feature], bins = bins, density = True, label = f"$p(\mathrm{{{label}|\: Class = malignant}})$", alpha = 0.5)
+        _ = plt.hist(dataset[dataset["Class"] == "benign"][feature], bins = bins, density = True, label = f"$p(\mathrm{{{label}|\: Class = benign}})$", alpha = 0.5, rwidth = 0.5, align = "left", color = "green")
+        _ = plt.hist(dataset[dataset["Class"] == "malignant"][feature], bins = bins, density = True, label = f"$p(\mathrm{{{label}|\: Class = malignant}})$", alpha = 0.5, rwidth = 0.5, align = "left", color = "red")
         plt.legend(loc='best')
-        plt.xticks(bins)
+        plt.xticks(np.linspace(1, 10, 10))
+        plt.xlim(right = 11)
         plt.show()
        
-        
 def main():
 
     dataset = load_data("../data/breast.w.arff")
