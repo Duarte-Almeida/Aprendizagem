@@ -8,7 +8,6 @@ plt.rcParams["text.usetex"] = True
 
 GROUP_NUMBER = 76
 
-# loads .arff dataset into a dataframe
 def load_data(filename):
     dataset = arff.loadarff(filename)
     dataset = pd.DataFrame(dataset[0])
@@ -16,8 +15,6 @@ def load_data(filename):
     dataset = dataset.dropna()  #remove instances with missing features
     return dataset
 
-# plot class conditional distributions
-# each plot depicts p(yi | Class = beningn) and p(yi | Class = malignant) for each feature yi
 def plot_grid(dataset):
     fig, axs = plt.subplots(3, 3)
     bins = np.linspace(1, 11, 11)           # create bins from 1 to 10
@@ -32,32 +29,22 @@ def plot_grid(dataset):
         axs[index[0], index[1]].set_xlim(right = 11)                # ignore xtick with the number 11
     fig.set_size_inches(12, 10)
     plt.savefig(f"output/grid.jpg", dpi = 1200)
-    plt.clf()
 
-# perform 10 fold cross validation on dataset using a kNN classifier
-# and acess average accuracy for k = 3, 5, 7
-def kNN_cross_validation(dataset):
+def kNN_cross_validation(inputs, outputs):
     kf = model_selection.KFold(n_splits = 10, shuffle = True, random_state = GROUP_NUMBER)
-    inputs = dataset.iloc[:, : -1].values
-    outputs = dataset[dataset.columns[-1]].values
     fig, ax = plt.subplots()
     test_errors = {}
     for k in (3, 5, 7):
         kNN = neighbors.KNeighborsClassifier(n_neighbors = k)
-        cv_results = model_selection.cross_validate(estimator = kNN, X = inputs, y = outputs, scoring = "accuracy", cv = kf)
-        test_errors[k] = cv_results["test_score"]
+        test_errors[k] = model_selection.cross_validate(estimator = kNN, X = inputs, y = outputs, scoring = "accuracy", cv = kf)["test_score"]
         print(f"{k}NN accuracy average and variance: {np.mean(test_errors[k])} / {np.var(test_errors[k], ddof = 1)}")
     bplot = ax.boxplot(test_errors.values())
     ax.set_xticklabels(["{}-NN".format(k) for k in test_errors.keys()])
     fig.set_size_inches(6, 2)
     plt.savefig("output/kNN_performances.png", dpi = 1200)
 
-# test the hypothesis that kNN is statistically superior to multinomial Naive Bayes
-# using a one-sided t test
-def test_kNN_NBayes(dataset):
+def test_kNN_NBayes(inputs, outputs):
     kf = model_selection.KFold(n_splits = 10, shuffle = True, random_state = GROUP_NUMBER)
-    inputs = dataset.iloc[:, : -1].values
-    outputs = dataset[dataset.columns[-1]].values
     kNN = neighbors.KNeighborsClassifier(n_neighbors = 3)
     NBayes = naive_bayes.MultinomialNB()
     accuracies_kNN = model_selection.cross_validate(estimator = kNN, X = inputs, y = outputs, scoring = "accuracy", cv = kf)["test_score"]
@@ -65,11 +52,8 @@ def test_kNN_NBayes(dataset):
     result = stats.ttest_rel(accuracies_kNN, accuracies_NB, alternative = "greater")
     print(f"Statistic:{result.statistic} p-value:{result.pvalue}")
     
-def main():
-    dataset = load_data("../data/breast.w.arff")
-    plot_grid(dataset)
-    kNN_cross_validation(dataset)
-    test_kNN_NBayes(dataset)
+dataset = load_data("../data/breast.w.arff")
+plot_grid(dataset)
+kNN_cross_validation(inputs = dataset.iloc[:, : -1].values,  outputs = dataset[dataset.columns[-1]].values)
+test_kNN_NBayes(inputs = dataset.iloc[:, : -1].values,  outputs = dataset[dataset.columns[-1]].values)
 
-if __name__ == "__main__":
-    main()
