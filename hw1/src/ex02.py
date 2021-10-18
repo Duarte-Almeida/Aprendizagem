@@ -6,8 +6,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 plt.rcParams["text.usetex"] = True
 
-GROUP_NUMBER = 76
-
 def load_data(filename):
     dataset = arff.loadarff(filename)
     dataset = pd.DataFrame(dataset[0])
@@ -31,12 +29,11 @@ def plot_grid(dataset):
     plt.savefig(f"output/grid.jpg", dpi = 1200)
 
 def kNN_cross_validation(inputs, outputs):
-    kf = model_selection.KFold(n_splits = 10, shuffle = True, random_state = GROUP_NUMBER)
+    kf = model_selection.KFold(n_splits = 10, shuffle = True, random_state = 76)
     fig, ax = plt.subplots()
     test_errors = {}
     for k in (3, 5, 7):
-        kNN = neighbors.KNeighborsClassifier(n_neighbors = k)
-        test_errors[k] = model_selection.cross_validate(estimator = kNN, X = inputs, y = outputs, scoring = "accuracy", cv = kf)["test_score"]
+        test_errors[k] = model_selection.cross_validate(estimator = neighbors.KNeighborsClassifier(n_neighbors = k), X = inputs, y = outputs, scoring = "accuracy", cv = kf)["test_score"]
         print(f"{k}NN accuracy average and variance: {np.mean(test_errors[k])} / {np.var(test_errors[k], ddof = 1)}")
     bplot = ax.boxplot(test_errors.values())
     ax.set_xticklabels(["{}-NN".format(k) for k in test_errors.keys()])
@@ -44,11 +41,9 @@ def kNN_cross_validation(inputs, outputs):
     plt.savefig("output/kNN_performances.png", dpi = 1200)
 
 def test_kNN_NBayes(inputs, outputs):
-    kf = model_selection.KFold(n_splits = 10, shuffle = True, random_state = GROUP_NUMBER)
-    kNN = neighbors.KNeighborsClassifier(n_neighbors = 3)
-    NBayes = naive_bayes.MultinomialNB()
-    accuracies_kNN = model_selection.cross_validate(estimator = kNN, X = inputs, y = outputs, scoring = "accuracy", cv = kf)["test_score"]
-    accuracies_NB = model_selection.cross_validate(estimator = NBayes, X = inputs, y = outputs, scoring = "accuracy", cv = kf)["test_score"]
+    kf = model_selection.KFold(n_splits = 10, shuffle = True, random_state = 76)
+    accuracies_kNN = model_selection.cross_validate(estimator = neighbors.KNeighborsClassifier(n_neighbors = 3), X = inputs, y = outputs, scoring = "accuracy", cv = kf)["test_score"]
+    accuracies_NB = model_selection.cross_validate(estimator = naive_bayes.MultinomialNB(), X = inputs, y = outputs, scoring = "accuracy", cv = kf)["test_score"]
     result = stats.ttest_rel(accuracies_kNN, accuracies_NB, alternative = "greater")
     print(f"Statistic:{result.statistic} p-value:{result.pvalue}")
     
