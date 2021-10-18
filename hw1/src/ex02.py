@@ -18,7 +18,7 @@ def load_data(filename):
 
 # plot class conditional distributions
 # each plot depicts p(yi | Class = beningn) and p(yi | Class = malignant) for each feature yi
-def plot_histograms(dataset):
+def plot_grid(dataset):
     fig, axs = plt.subplots(3, 3)
     bins = np.linspace(1, 11, 11)           # create bins from 1 to 10
     for (index, feature) in zip([(i, j) for i in range(0, 3) for j in range(0, 3)], dataset.columns[:-1]):
@@ -63,11 +63,11 @@ def test_kNN_NBayes(dataset):
     accuracies_kNN = model_selection.cross_validate(estimator = kNN, X = inputs, y = outputs, scoring = "accuracy", cv = kf)["test_score"]
     accuracies_NB = model_selection.cross_validate(estimator = NBayes, X = inputs, y = outputs, scoring = "accuracy", cv = kf)["test_score"]
     result = stats.ttest_rel(accuracies_kNN, accuracies_NB, alternative = "greater")
-    print(f"Statistic:{result.statistic}p-value:{result.pvalue}")
+    print(f"Statistic:{result.statistic} p-value:{result.pvalue}")
     
 def main():
     dataset = load_data("../data/breast.w.arff")
-    plot_histograms(dataset)
+    plot_grid(dataset)
     kNN_cross_validation(dataset)
     test_kNN_NBayes(dataset)
 
