@@ -1,8 +1,0 @@
-11/10/2001
-
-Feito:
-- Estimação de parâmetros
-
-A fazer:
-- Perguntar até que ponto é que é preciso mostrar cálculos intermédios
-- vou fazer as predictions para cada datapoint, para depois fazer a matriz de confusão (o F1 score é trivial a partir daí)
