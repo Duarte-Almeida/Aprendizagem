@@ -2,19 +2,39 @@
 
 \usepackage{titling}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{mathtools}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{subfig}
+
+\graphicspath{ {./src/output} }
+
 
 \setlength{\droptitle}{-5em}   
 
 
 \renewcommand{\questionlabel}{\textbf{~\thequestion)}}
+\renewcommand{\thepartno}{\roman{partno}}
 \DeclarePairedDelimiterX{\norm}[1]{\lVert}{\rVert}{#1}
 
 \newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
 
+\newenvironment{shiftedflalign*}{%
+    \start@align\tw@\st@rredtrue\m@ne
+    \hskip\parindent
+}{%
+    \endalign
+}
+
+
+
 \title{Homework 2 - Group 076}
 \author{Aprendizagem 2021/2022}
 \date{}
+
+\cfoot{\thepage}
 
 \begin{document}
     \maketitle
@@ -94,6 +114,138 @@
         \begin{equation*}
            \mathrm{RMSE}(\textbf{\^{z}}, \textbf{z}) = \sqrt{\frac{1}{2}\sum_{i = 1}^{2}(\hat{z}_i - z_i)^2} = 1.2567
         \end{equation*}
+        
+        \item To make an equal depth binarization of $y_3$, we compute the median of the values of $y_3$ of all the instances in the dataset:
+        \begin{equation*}
+             \text{median}(\{x^{(i)}_{3}\}_{i = 1}^{10}) = 2.5
+        \end{equation*}
+        and make the following transformation to $y_3$:
+        \begin{equation*}
+            y_3 :=
+            \begin{cases}
+                0, & \text{if } y_3 < \text{median} \\
+                1, & \text{otherwise}
+            \end{cases}
+        \end{equation*}
+        Considering the given class targets, we have the following data table:
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{llll}
+            $y_1$ & $y_2$ & $y_3$ & $t$ \\ \hline
+            1     & 1     & 0     & N   \\
+            1     & 1     & 1     & N   \\
+            0     & 2     & 1     & N   \\
+            1     & 2     & 1     & N   \\
+            2     & 0     & 1     & P   \\
+            1     & 1     & 0     & P   \\
+            2     & 0     & 0     & P   \\
+            0     & 2     & 1     & P  
+            \end{tabular}
+        \end{table}
+        \begin{itemize}
+            \item Starting entropy:
+            \begin{equation*}
+                H(t) = - \sum_{i = 0}^{1}\frac{\#\{k|t^{(k)} = i\}}{8} \log_2\left(\frac{\#\{k|t^{(j)} = i\}}{8}\right) = - \left(\frac{1}{2}\log_2\left(\frac{1}{2}\right) + \frac{1}{2}\log_2\left(\frac{1}{2}\right)\right) = 1 \medspace bit
+            \end{equation*}
+            \item Variable conditional entropies and corresponding information gains ($\text{IG}(y_i) = H(t) - H(t|y_i))$:
+            \begin{align*}
+                H(t|y_1) &= \sum_{i = 0}^{2} \frac{\#\{k|y_1^{(k)} = i\}}{8}H(t|y_1 = i)\\
+                &= - \sum_{i = 0}^{2} \frac{\#\{k|y_1^{(k)} = i\}}{8} \sum_{j = 0}^{1} \frac{\#\{k|y_1^{(k)} = i, t^{(k)} = j\}}{\#\{k|t^{(k)} = j\}} \log_2\left( \frac{\#\{k|y_1^{(k)} = i, t^{(k)} = j\}}{\#\{k|t^{(k)} = j\}}\right) \\
+                &= - \frac{1}{4}\left( \frac{1}{2}\log_2\left(\frac{1}{2}\right) + \frac{1}{2}\log_2\left(\frac{1}{2}\right)\right) - \frac{1}{2} \left( \frac{3}{4}\log_2\left(\frac{3}{4}\right) + \frac{1}{4}\log_2\left(\frac{1}{4}\right)\right) - \frac{1}{2} \left( 0\log_2\left(0\right) + 1\log_2(1)\right) \\
+                &= 0.6556  \text{ }bit\\
+                H(t|y_2) &= - \frac{1}{4}\left(0\log_2(0) + 1\log_2(1)\right) - \frac{3}{8} \left( \frac{2}{3}\log_2\left(\frac{2}{3}\right) + \frac{1}{3}\log_2\left(\frac{1}{3}\right)\right) - \frac{3}{8} \left( \frac{2}{3}\log_2\left(\frac{2}{3}\right) + \frac{1}{3}\log_2\left(\frac{1}{3}\right)\right) \\
+                &= 0.68872  \text{ }bit\\
+                H(t|y_3) &= - \frac{3}{8}\left(\frac{1}{3}\log_2\left(\frac{1}{3}\right) + \frac{2}{3}\log_2\left(\frac{2}{3}\right)\right) - \frac{5}{8} \left( \frac{3}{5}\log_2\left(\frac{3}{5}\right) + \frac{2}{5}\log_2\left(\frac{2}{5}\right)\right) = 0.95121 \text{ }bit
+            \end{align*}
+            \begin{alignat*}{2}
+                \text{IG}(y_1) = 1 - 0.6556  = 0.34436 \text{ }bit \quad & \text{IG}(y_2) = 0.31128 \text{ }bit \quad & \text{IG}(y_3) = 0.04879 \text{ }bit
+            \end{alignat*}
+        \end{itemize}
+        Since $y_1$ yields the biggest information gain, it will take part in the first node in the decision tree and the following division in the dataset is obtained:
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{lll|lll|lll}
+            \multicolumn{3}{c|}{$y_1  = 0$} & \multicolumn{3}{c|}{$y_1 = 1$} & \multicolumn{3}{c}{$y_1 = 2$} \\ \hline
+            $y_2$     & $y_3$     & $t$    & $y_2$     & $y_3$     & $t$    & $y_2$     & $y_3$     & $t$    \\ \hline
+            2         & 1         & N      & 1         & 0         & N      & 0         & 1         & P      \\
+            2         & 1         & P      & 1         & 1         & N      & 0         & 0         & P      \\
+                        &           &        & 2         & 1         & N      &           &           &        \\
+                        &           &        & 1         & 0         & P      &           &           &       
+            \end{tabular}
+        \end{table}
+        Partition $(y_1 = 2)$ has no uncertainty and we cannot reduce uncertainty in partition $(y_1 = 0)$ (note that there is only one value of $y_2$ (resp. $y_3$), so $H(t|y_2, y_1 = 1) = H(t|y_1 = 1)$ (resp., $H(t|y_3, y_1 = 1)$), so there is no possible information gain). We thus proceed to divide partition $(y_1 = 1)$ even further in an analogous way as before: 
+        \begin{itemize}
+            \item Starting entropy:
+        \end{itemize}
+        \vspace{-1.75em}
+        \begin{flalign*}
+            H(t|y_1 = 1) &= - \sum_{i=0}^{1}\frac{\#\{k|t^{(k)} = i \wedge y_1^{(k)} = 1\}}{\#\{k|y_1^{(k)} = 1\}} \log_2\left(\frac{\#\{k|t^{(k)} = i \wedge y_1^{k} = 1\}}{\#\{k|y_1^{(k)} = 1\}}\right) \\
+            &= - \left(\frac{3}{5}\log_2\left(\frac{3}{4}\right) + \frac{1}{4}\log_2\left(\frac{1}{4}\right)\right) = 0.688721 \medspace bit
+        \end{flalign*}
+        \vspace{-1.5em}
+        \begin{itemize}
+            \item Variable conditional entropies and corresponding information gains (where $\text{IG}(y_i|y_1 = 1) = H(t|y_1 = 1) - H(t|y_i, y_1 = 1))$:
+        \end{itemize}
+        \vspace{-1em}
+        \begin{gather*}
+            H(t|y_2, y_1 = 1) = \sum_{i = 0}^{2} \frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}}{\#\{k|y_1^{(k)} = 1)\}}H(t|y_2 = i, y_1 = 1) \\
+                = - \sum_{i = 0}^{2}  \frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1)\}}{\#\{k|y_1^{(k)} = 1\}} \sum_{j = 0}^{1}  \frac{\#\{k|t^{(k)} = j \wedge y_2^{(k)} = i \wedge y_1^{(k) } = 1)\}}{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}} \log_2\left(\frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1)\}}{\#\{k|y_1^{(k)} = 1\}}\right) \\
+                = - \frac{3}{4}\left( \frac{2}{3}\log_2\left(\frac{2}{3}\right) + \frac{1}{3}\log_2\left(\frac{1}{3}\right)\right) - \frac{1}{4} \left( 1\log_2(1) + 0\log_2(0)\right) 
+                = 0.688721 \medspace bit\\
+            H(t|y_3, y_1 = 1)
+                = - \frac{1}{2}\left( \frac{1}{2}\log_2\left(\frac{1}{2}\right) + \frac{1}{2}\log_2\left(\frac{1}{2}\right)\right)
+                =  0.5 \medspace bit
+        \end{gather*}
+        \vspace{-1.5em}
+        \begin{alignat*}{2}
+            \text{IG}(y_2|y_1 = 1) = 0.81127 - 0.688721  = 0.1225979 \text{ }bit \quad & \text{IG}(y_3|y_1 = 1) = 0.81127 - 0.5  = 0.31127 \text{ }bit 
+        \end{alignat*}
+        As $y_3$ provides the biggest information gain, it will originate a new partition in the partition $y_1 = 1$. The following divided dataset cannot be further partitioned ($(y_1 = 1, y_3 = 1)$ has no uncertainty and we can't obtain information gain from dividing $(y_1 = 1, y_3 = 0)$ for the same argument as the applied above to $(y_1 = 0)$):
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{lll|ll|ll|lll}
+            \multicolumn{3}{c|}{$y_1  = 0$} & \multicolumn{4}{c|}{$y_1 = 1$}                                  & \multicolumn{3}{c|}{$y_1 = 2$} \\ \hline
+            $y_2$     & $y_3$     & $t$     & \multicolumn{2}{l|}{$y_3 = 0$} & \multicolumn{2}{l|}{$y_3 = 1$} & $y_2$     & $y_3$     & $t$    \\ \hline
+            2         & 1         & N       & $y_2$           & $t$          & $y_2$           & $t$          & 0         & 1         & P      \\ \cline{4-7}
+            2         & 1         & P       & 1               & N            & 1               & N            & 0         & 0         & P      \\
+                      &           &         & 1               & P            & 2               & N            &           &           &       
+            \end{tabular}
+        \end{table}
+        And thus we have the desired decision tree:
+        \vspace{-0.25em}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{llccrr}
+            \multicolumn{2}{r}{$y_1 = 0$}  & \multicolumn{2}{c}{$y_1 = 1$}    & \multicolumn{2}{l}{$y_1 = 2$}  \\
+            \multicolumn{2}{c}{$\swarrow$} & \multicolumn{2}{c}{$\downarrow$} & \multicolumn{2}{c}{$\searrow$} \\
+            N/P         &                  & $y_3 = 0$       & $y_3 = 1$      &                     & P        \\
+                        &        & $\downarrow$    & $\downarrow$   &        &          \\
+                        &                  & N/P             & N              &                     &         
+            \end{tabular}
+        \end{table}
+        \item Considering the computed decision tree, for $\textbf{x}^{(9)} = 
+        \begin{bmatrix}
+            2 & 0 & 0
+        \end{bmatrix}^T$ 
+        we have that $\textbf{\^{t}}(\textbf{x}^{(9)}) = \text{P}$, and, for $\textbf{x}^{(10)} = 
+        \begin{bmatrix}
+            1 & 2 & 1
+        \end{bmatrix}^T$, we have that $\textbf{\^{t}}(\textbf{x}^{(10)}) = \text{N}$. Since $\textbf{t}(\textbf{x}^{(9)}) = \text{N}$ and $\textbf{t}(\textbf{x}^{(10)}) = \text{P}$ there are no true positives and no true negatives in the classification of these instances. Thus, accuracy on the testing data is 0 according to the formula $\text{Accuracy} = \frac{TP + TN}{P + N}$.
+
+    \end{questions}
+    \section{Programming and critical analysis}
+    \begin{questions}
+        \setcounter{question}{4}
+        \item
+        \begin{parts}
+            \item  \hspace{21em} (ii)
+            \begin{figure}[H]
+                \centering
+                \subfloat{{\includegraphics[scale = 0.47]{accuracy_n_features.pdf} }}%
+                \qquad
+                \subfloat{{\includegraphics[scale = 0.47]{accuracy_n_depths.pdf} }}
+            \end{figure}
+        \end{parts}
     \end{questions}
     
 \end{document}
