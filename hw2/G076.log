@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.3)  25 OCT 2021 02:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.3)  25 OCT 2021 02:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/duartealmeida/Apre/homeworks/hw2/data/G076.tex
-(/Users/duartealmeida/Apre/homeworks/hw2/data/G076.tex
+**/Users/duartealmeida/Apre/homeworks/hw2/G076.tex
+(/Users/duartealmeida/Apre/homeworks/hw2/G076.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> (/usr/local/texlive/2021/texmf-dist/tex/latex/exam/exam.cls
 Document Class: exam 2021/02/26 Version 2.7 by Philip Hirschhorn
@@ -200,7 +200,7 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count310
 \l__pdf_internal_box=\box51
-) (/Users/duartealmeida/Apre/homeworks/hw2/data/G076.aux)
+) (/Users/duartealmeida/Apre/homeworks/hw2/G076.aux)
 \openout1 = `G076.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
@@ -259,17 +259,17 @@ Overfull \hbox (11.91432pt too wide) detected at line 74
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 This exam contains 0 questions with 0 parts, 0 subparts, and 0 subsubparts.
-(/Users/duartealmeida/Apre/homeworks/hw2/data/G076.aux) ) 
+(/Users/duartealmeida/Apre/homeworks/hw2/G076.aux) ) 
 Here is how much of TeX's memory you used:
  3558 strings out of 478994
- 52363 string characters out of 5858185
- 384801 words of memory out of 5000000
+ 52318 string characters out of 5858185
+ 385801 words of memory out of 5000000
  21032 multiletter control sequences out of 15000+600000
  410955 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,14n,77p,408b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,14n,77p,403b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on /Users/duartealmeida/Apre/homeworks/hw2/data/G076.pdf (1 page, 107395 bytes).
+Output written on /Users/duartealmeida/Apre/homeworks/hw2/G076.pdf (1 page, 107760 bytes).
 PDF statistics:
  52 PDF objects out of 1000 (max. 8388607)
  37 compressed objects within 1 object stream

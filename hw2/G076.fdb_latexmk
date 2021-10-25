@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1635123829 "/Users/duartealmeida/Apre/homeworks/hw2/data/G076.tex" "/Users/duartealmeida/Apre/homeworks/hw2/data/G076.pdf" "G076" 1635123846
-  "/Users/duartealmeida/Apre/homeworks/hw2/data/G076.aux" 1635123830 479 5747cd4d952cb78a06f919bf95b76cdd ""
-  "/Users/duartealmeida/Apre/homeworks/hw2/data/G076.tex" 1635123828 4580 abbd936cf645bcd2f9a205d95f8a10bb ""
+["pdflatex"] 1635124084 "/Users/duartealmeida/Apre/homeworks/hw2/G076.tex" "/Users/duartealmeida/Apre/homeworks/hw2/G076.pdf" "G076" 1635124084
+  "/Users/duartealmeida/Apre/homeworks/hw2/G076.aux" 1635124084 479 5747cd4d952cb78a06f919bf95b76cdd ""
+  "/Users/duartealmeida/Apre/homeworks/hw2/G076.tex" 1635124083 4598 ba5eb7d89a3299c795e66c0a6b4126e7 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1246382020 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1246382020 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -64,11 +64,11 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1628006716 2724738 68278f851694ab0d87eac3491a953e5a ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "G076.aux" 1635123830 479 5747cd4d952cb78a06f919bf95b76cdd "pdflatex"
-  "G076.tex" 1635123828 4580 abbd936cf645bcd2f9a205d95f8a10bb ""
+  "G076.aux" 1635124084 479 5747cd4d952cb78a06f919bf95b76cdd "pdflatex"
+  "G076.tex" 1635124083 4598 ba5eb7d89a3299c795e66c0a6b4126e7 ""
   (generated)
-  "/Users/duartealmeida/Apre/homeworks/hw2/data/G076.pdf"
-  "G076.log"
-  "/Users/duartealmeida/Apre/homeworks/hw2/data/G076.log"
   "G076.aux"
+  "/Users/duartealmeida/Apre/homeworks/hw2/G076.log"
+  "G076.log"
   "G076.pdf"
+  "/Users/duartealmeida/Apre/homeworks/hw2/G076.pdf"
