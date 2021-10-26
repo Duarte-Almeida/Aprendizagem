@@ -145,7 +145,7 @@
         \begin{itemize}
             \item Starting entropy:
             \begin{equation*}
-                H(t) = - \sum_{i = 0}^{1}\frac{\#\{k|t^{(k)} = i\}}{8} \log_2\left(\frac{\#\{k|t^{(j)} = i\}}{8}\right) = - \left(\frac{1}{2}\log_2\left(\frac{1}{2}\right) + \frac{1}{2}\log_2\left(\frac{1}{2}\right)\right) = 1 \medspace bit
+                H(t) = - \sum_{i = 0}^{1}\frac{\#\{k|t^{(k)} = i\}}{8} \log_2\left(\frac{\#\{k|t^{(k)} = i\}}{8}\right) = - \left(\frac{1}{2}\log_2\left(\frac{1}{2}\right) + \frac{1}{2}\log_2\left(\frac{1}{2}\right)\right) = 1 \medspace bit
             \end{equation*}
             \item Variable conditional entropies and corresponding information gains ($\text{IG}(y_i) = H(t) - H(t|y_i))$:
             \begin{align*}
@@ -189,7 +189,7 @@
         \vspace{-1em}
         \begin{gather*}
             H(t|y_2, y_1 = 1) = \sum_{i = 0}^{2} \frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}}{\#\{k|y_1^{(k)} = 1)\}}H(t|y_2 = i, y_1 = 1) \\
-                = - \sum_{i = 0}^{2}  \frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1)\}}{\#\{k|y_1^{(k)} = 1\}} \sum_{j = 0}^{1}  \frac{\#\{k|t^{(k)} = j \wedge y_2^{(k)} = i \wedge y_1^{(k) } = 1)\}}{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}} \log_2\left(\frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1)\}}{\#\{k|y_1^{(k)} = 1\}}\right) \\
+                = - \sum_{i = 0}^{2}  \frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1)\}}{\#\{k|y_1^{(k)} = 1\}} \sum_{j = 0}^{1}  \frac{\#\{k|t^{(k)} = j \wedge y_2^{(k)} = i \wedge y_1^{(k) } = 1)\}}{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}} \log_2\left(\frac{\#\{k|t^{(k)} = j \wedge y_2^{(k)} = i \wedge y_1^{(k) } = 1)\}}{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}}\right) \\
                 = - \frac{3}{4}\left( \frac{2}{3}\log_2\left(\frac{2}{3}\right) + \frac{1}{3}\log_2\left(\frac{1}{3}\right)\right) - \frac{1}{4} \left( 1\log_2(1) + 0\log_2(0)\right) 
                 = 0.688721 \medspace bit\\
             H(t|y_3, y_1 = 1)

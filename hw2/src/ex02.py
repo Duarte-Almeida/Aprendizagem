@@ -4,7 +4,6 @@ from scipy.io import arff
 from sklearn import feature_selection, model_selection, tree
 import matplotlib.pyplot as plt
 plt.rcParams["text.usetex"] = True
-plt.rcParams["font.serif"] = "Computer Modern Roman"
 
 def load_data(filename):
 
@@ -22,15 +21,17 @@ def compare_accuracy_n_features(inputs, outputs, fold):
     train_accuracies = []
     for n_features in (1, 3, 5 ,9):
         inputs_new = feature_selection.SelectKBest(feature_selection.mutual_info_classif, k = n_features).fit_transform(inputs, outputs)
-        print(inputs_new)
         results = model_selection.cross_validate(estimator = tree.DecisionTreeClassifier(criterion = "entropy"), X = inputs_new, y = outputs, scoring = "accuracy", cv = fold, return_train_score = True)
         test_accuracies.append(np.mean(results["test_score"]))
         train_accuracies.append(np.mean(results["train_score"]))
     
     print(f"training accuracies:{train_accuracies} \ntesting accuracies:{test_accuracies}")
     fig, ax = plt.subplots()
-    ax.plot([1, 3, 5, 7], test_accuracies, label = "test accuracies")
-    ax.plot([1, 3, 5, 7], train_accuracies, label = "train accuracies")
+    ax.plot([1, 3, 5, 9], test_accuracies, label = "test accuracies")
+    ax.plot([1, 3, 5, 9], train_accuracies, label = "train accuracies")
+    ax.set_yticks(test_accuracies + train_accuracies, minor=True)
+    ax.yaxis.grid(True, which='minor', alpha = 0.5, linestyle = "dashed")
+    ax.legend(loc = "best")
     ax.legend(loc = "best")
     ax.set_xticks([1,3,5,7,9])
 
@@ -46,8 +47,10 @@ def compare_accuracy_n_depths(inputs, outputs, fold):
         train_accuracies.append(np.mean(results["train_score"]))
     print(f"training accuracies:{train_accuracies} \ntesting accuracies:{test_accuracies}")
     fig, ax = plt.subplots()
-    ax.plot([1, 3, 5, 7], test_accuracies, label = "test accuracies")
-    ax.plot([1, 3, 5, 7], train_accuracies, label = "train accuracies")
+    ax.plot([1, 3, 5, 9], test_accuracies, label = "test accuracies")
+    ax.plot([1, 3, 5, 9], train_accuracies, label = "train accuracies")
+    ax.set_yticks(test_accuracies + train_accuracies, minor=True)
+    ax.yaxis.grid(True, which='minor', alpha = 0.5, linestyle = "dashed")
     ax.legend(loc = "best")
     ax.set_xticks([1,3,5,7,9])
 
