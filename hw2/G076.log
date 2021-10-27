@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.3)  27 OCT 2021 01:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.3)  27 OCT 2021 16:35
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **/Users/duartealmeida/Apre/homeworks/hw2/G076.tex
@@ -450,40 +450,172 @@ Package caption Info: float package is loaded.
 \c@lotdepth=\count340
 \sf@top=\skip87
 \sf@bottom=\skip88
-) (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2017/07/19 v2.5 Yet another Pygments shim for LaTeX
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count341
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2021/01/20 v3.7 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count342
+\FV@InFile=\read3
+\FV@TabBox=\box64
+\c@FancyVerbLine=\count343
+\FV@StepNumber=\count344
+\FV@OutFile=\write4
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count345
+\output=\toks40
+\linenoprevgraf=\count346
+\linenumbersep=\dimen277
+\linenumberwidth=\dimen278
+\c@linenumber=\count347
+\c@pagewiselinenumber=\count348
+\c@LN@truepage=\count349
+\c@internallinenumber=\count350
+\c@internallinenumbers=\count351
+\quotelinenumbersep=\dimen279
+\bframerule=\dimen280
+\bframesep=\dimen281
+\bframebox=\box65
+LaTeX Info: Redefining \\ on input line 3056.
+)
+\c@FV@TrueTabGroupLevel=\count352
+\c@FV@TrueTabCounter=\count353
+\FV@TabBox@Group=\box66
+\FV@TmpLength=\skip89
+\c@FV@HighlightLinesStart=\count354
+\c@FV@HighlightLinesStop=\count355
+\FV@LoopCount=\count356
+\FV@NCharsBox=\box67
+\FV@BreakIndent=\dimen282
+\FV@BreakIndentNChars=\count357
+\FV@BreakSymbolSepLeft=\dimen283
+\FV@BreakSymbolSepLeftNChars=\count358
+\FV@BreakSymbolSepRight=\dimen284
+\FV@BreakSymbolSepRightNChars=\count359
+\FV@BreakSymbolIndentLeft=\dimen285
+\FV@BreakSymbolIndentLeftNChars=\count360
+\FV@BreakSymbolIndentRight=\dimen286
+\FV@BreakSymbolIndentRightNChars=\count361
+\c@FancyVerbLineBreakLast=\count362
+\FV@LineBox=\box68
+\FV@LineIndentBox=\box69
+\FV@LineWidth=\dimen287
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 75.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/catchfile/catchfile.sty
+Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+runsystem(uname -s > "G076.w18")...executed.
+
+ (/Users/duartealmeida/Apre/homeworks/hw2/G076.w18)
+runsystem(rm -- "G076.w18")...executed.
+
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/xstring/xstring.sty (/usr/local/texlive/2021/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count363
+\decimalpart=\count364
+)
+Package: xstring 2019/02/06 v1.83 String manipulations (CT)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip90
+\fb@frw=\dimen288
+\fb@frh=\dimen289
+\FrameRule=\dimen290
+\FrameSep=\dimen291
+)
+\minted@appexistsfile=\read4
+\minted@bgbox=\box70
+\minted@code=\write5
+\c@minted@FancyVerbLineTemp=\count365
+\c@minted@pygmentizecounter=\count366
+\@float@every@listing=\toks41
+\c@listing=\count367
+)
+runsystem(mkdir -p _minted-G076)...executed.
+
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/inconsolata/inconsolata.sty
+Package: inconsolata 2019/05/17 v1.12
+ `inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks42
+\XKV@tempa@toks=\toks43
+)
+\XKV@depth=\count368
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\zifour@ocount=\count369
+)
+runsystem(which pygmentize && touch G076.aex)...executed.
+
+runsystem(rm G076.aex)...executed.
+
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count341
-\l__pdf_internal_box=\box64
+\l__color_backend_stack_int=\count370
+\l__pdf_internal_box=\box71
 ) (/Users/duartealmeida/Apre/homeworks/hw2/G076.aux)
 \openout1 = `G076.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
  (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count342
-\scratchdimen=\dimen277
-\scratchbox=\box65
-\nofMPsegments=\count343
-\nofMParguments=\count344
-\everyMPshowfont=\toks40
-\MPscratchCnt=\count345
-\MPscratchDim=\dimen278
-\MPnumerator=\count346
-\makeMPintoPDFobject=\count347
-\everyMPtoPDFconversion=\toks41
+\scratchcounter=\count371
+\scratchdimen=\dimen292
+\scratchbox=\box72
+\nofMPsegments=\count372
+\nofMParguments=\count373
+\everyMPshowfont=\toks44
+\MPscratchCnt=\count374
+\MPscratchDim=\dimen293
+\MPnumerator=\count375
+\makeMPintoPDFobject=\count376
+\everyMPtoPDFconversion=\toks45
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -493,64 +625,86 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (11.91432pt too wide) detected at line 94
+<./src/output/logo_ist.jpeg, id=4, 301.125pt x 132.495pt>
+File: ./src/output/logo_ist.jpeg Graphic file (type jpg)
+<use ./src/output/logo_ist.jpeg>
+Package pdftex.def Info: ./src/output/logo_ist.jpeg  used on input line 45.
+(pdftex.def)             Requested size: 105.39532pt x 46.37393pt.
+
+Overfull \hbox (11.91432pt too wide) detected at line 100
 []
  []
 
 [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (25.74211pt too wide) detected at line 159
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/duartealmeida/Apre/homeworks/hw2/./src/output/logo_ist.jpeg>]
+Overfull \hbox (25.74211pt too wide) detected at line 165
 []
  []
 
 [2]
-Overfull \hbox (1.83878pt too wide) in paragraph at lines 187--188
+Overfull \hbox (1.83878pt too wide) in paragraph at lines 193--194
 []\OT1/cmr/m/n/10 Variable con-di-tional en-tropies and cor-re-spond-ing in-for-ma-tion gains (where $[](\OML/cmm/m/it/10 y[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 y[] \OT1/cmr/m/n/10 = 1) = \OML/cmm/m/it/10 H\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 y[] \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (62.33444pt too wide) detected at line 198
+Overfull \hbox (62.33444pt too wide) detected at line 204
 []
  []
 
-<./src/output/accuracy_n_features.pdf, id=24, 462.52798pt x 346.89601pt>
+<./src/output/accuracy_n_features.pdf, id=25, 462.52798pt x 346.89601pt>
 File: ./src/output/accuracy_n_features.pdf Graphic file (type pdf)
 <use ./src/output/accuracy_n_features.pdf>
-Package pdftex.def Info: ./src/output/accuracy_n_features.pdf  used on input line 245.
-(pdftex.def)             Requested size: 217.38817pt x 163.04114pt.
-<./src/output/accuracy_n_depths.pdf, id=25, 462.52798pt x 346.89601pt>
-File: ./src/output/accuracy_n_depths.pdf Graphic file (type pdf)
-<use ./src/output/accuracy_n_depths.pdf>
-Package pdftex.def Info: ./src/output/accuracy_n_depths.pdf  used on input line 247.
-(pdftex.def)             Requested size: 217.38817pt x 163.04114pt.
-[3] [4 </Users/duartealmeida/Apre/homeworks/hw2/./src/output/accuracy_n_features.pdf> </Users/duartealmeida/Apre/homeworks/hw2/./src/output/accuracy_n_depths.pdf
+Package pdftex.def Info: ./src/output/accuracy_n_features.pdf  used on input line 251.
+(pdftex.def)             Requested size: 277.51892pt x 208.1392pt.
+[3]
+<./src/output/accuracy_n_tree_depths.pdf, id=29, 462.52798pt x 346.89601pt>
+File: ./src/output/accuracy_n_tree_depths.pdf Graphic file (type pdf)
+<use ./src/output/accuracy_n_tree_depths.pdf>
+Package pdftex.def Info: ./src/output/accuracy_n_tree_depths.pdf  used on input line 257.
+(pdftex.def)             Requested size: 277.51892pt x 208.1392pt.
+ [4 </Users/duartealmeida/Apre/homeworks/hw2/./src/output/accuracy_n_features.pdf> </Users/duartealmeida/Apre/homeworks/hw2/./src/output/accuracy_n_tree_depths.pdf
 
-pdfTeX warning: pdflatex (file /Users/duartealmeida/Apre/homeworks/hw2/./src/output/accuracy_n_depths.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]
+pdfTeX warning: pdflatex (file /Users/duartealmeida/Apre/homeworks/hw2/./src/output/accuracy_n_tree_depths.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>] (/Users/duartealmeida/Apre/homeworks/hw2/_minted-G076/default-pyg-prefix.pygstyle) (/Users/duartealmeida/Apre/homeworks/hw2/_minted-G076/default.pygstyle) (/Users/duartealmeida/Apre/homeworks/hw2/_minted-G076/54C6912A3E866231B8DCF2D2ECB5B8DE6BD571868154877D37774C8CAD6285CF.pygtex
+LaTeX Font Info:    Trying to load font information for OT1+zi4 on input line 1.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/inconsolata/ot1zi4.fd
+File: ot1zi4.fd 2018/01/14 OT1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
+(Font)              scaled to size 10.0pt on input line 1.
+LaTeX Font Info:    Font shape `OT1/zi4/b/n' will be
+(Font)              scaled to size 10.0pt on input line 2.
+LaTeX Font Info:    Trying to load font information for TS1+zi4 on input line 12.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
+File: ts1zi4.fd 2018/01/14 TS1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
+(Font)              scaled to size 10.0pt on input line 12.
+) [5]
 This exam contains 0 questions with 0 parts, 0 subparts, and 0 subsubparts.
 (/Users/duartealmeida/Apre/homeworks/hw2/G076.aux) ) 
 Here is how much of TeX's memory you used:
- 15420 strings out of 478994
- 302291 string characters out of 5858185
- 614121 words of memory out of 5000000
- 32646 multiletter control sequences out of 15000+600000
- 413770 words of font info for 66 fonts, out of 8000000 for 9000
+ 19297 strings out of 478994
+ 380207 string characters out of 5858185
+ 734300 words of memory out of 5000000
+ 36400 multiletter control sequences out of 15000+600000
+ 414472 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,14n,116p,468b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /Users/duartealmeida/Apre/homeworks/hw2/G076.pdf (4 pages, 193355 bytes).
+ 113i,14n,116p,527b,610s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on /Users/duartealmeida/Apre/homeworks/hw2/G076.pdf (5 pages, 243067 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
+ 113 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

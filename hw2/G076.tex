@@ -8,6 +8,9 @@
 \usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{subfig}
+\usepackage{minted}
+\usepackage{inconsolata}
+\usepackage{tikz}
 
 \graphicspath{ {./src/output} }
 
@@ -38,6 +41,9 @@
 
 \begin{document}
     \maketitle
+    \begin{tikzpicture}[overlay, remember picture]
+        \node[xshift=3.5cm,yshift=-2cm] at (current page.north west) {\includegraphics[scale = 0.35]{logo_ist.jpeg}};
+    \end{tikzpicture}
     \vspace{-3.5em}
     \section{Pen and Paper}
     \begin{questions}
@@ -204,7 +210,7 @@
         \begin{table}[H]
             \centering
             \begin{tabular}{lll|ll|ll|lll}
-            \multicolumn{3}{c|}{$y_1  = 0$} & \multicolumn{4}{c|}{$y_1 = 1$}                                  & \multicolumn{3}{c|}{$y_1 = 2$} \\ \hline
+            \multicolumn{3}{c|}{$y_1  = 0$} & \multicolumn{4}{c|}{$y_1 = 1$}                                  & \multicolumn{3}{c}{$y_1 = 2$} \\ \hline
             $y_2$     & $y_3$     & $t$     & \multicolumn{2}{l|}{$y_3 = 0$} & \multicolumn{2}{l|}{$y_3 = 1$} & $y_2$     & $y_3$     & $t$    \\ \hline
             2         & 1         & N       & $y_2$           & $t$          & $y_2$           & $t$          & 0         & 1         & P      \\ \cline{4-7}
             2         & 1         & P       & 1               & N            & 1               & N            & 0         & 0         & P      \\
@@ -238,13 +244,17 @@
         \setcounter{question}{4}
         \item
         \begin{parts}
-            \item  \hspace{21em} (ii)
-            \vspace{-1.2em}
+            \item { \quad}
+            \vspace{-3.0em}
             \begin{figure}[H]
                 \centering
-                \subfloat{{\includegraphics[scale = 0.47]{accuracy_n_features.pdf} }}%
-                \qquad
-                \subfloat{{\includegraphics[scale = 0.47]{accuracy_n_depths.pdf} }}
+                {\includegraphics[scale = 0.60]{accuracy_n_features.pdf} }
+            \end{figure}
+            \item  {\quad}
+            \vspace{-3.0em}
+            \begin{figure}[H]
+                \centering
+                {\includegraphics[scale = 0.60]{accuracy_n_tree_depths.pdf} }
             \end{figure}
         \end{parts}
         \item With the increase of tree size (by number of relevant features or depth), test accuracy grows but training accuracy starts to fall after a certain point, thus revealing a tendency of overfitting to the training data. These behaviours can be explained by the following reasons:
@@ -257,5 +267,9 @@
         \end{itemize}
         \item According to the plot in question 5) (ii), the most suitable tree depth is 5, since it is the one that maximizes mean testing accuracy across train/test folds. Consequently, it is the one that is less expected to overfit, following the last argument in the previous question. 
     \end{questions}
+    \pagebreak
+    \section{Appendix}
+    \inputminted{python}{src/ex02.py}
+    
     
 \end{document}
