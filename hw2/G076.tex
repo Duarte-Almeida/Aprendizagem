@@ -262,7 +262,7 @@
         \vspace{-0.4em}
         \begin{itemize}
             \item depth and number of considered features are positively correlated: if there are more features then it is expected that rules consider a bigger number of said features, making the decision tree deeper; if we loosen the depth threshold, then there are less restriction on how many features to consider. Therefore, the interaction between depth/no. of features and training/testing accuracy can become highly similar;
-            \item both an increased number of considered features and tree depth make splits more granular and the rules more specific to the regularities of the training data, making it harder for the model to generalize to unseen data data (i.e., overfitting). Hence the always-rising tendency in training accuracy and a decay in testing accuracy from a certain tree depth/no. of features onwards.
+            \item both an increased number of considered features and tree depth make splits more granular and the rules more specific to the regularities of the training data, making it harder for the model to generalize to unseen data (i.e., overfitting). Hence the always-rising tendency in training accuracy and a decay in testing accuracy from a certain tree depth/no. of features onwards.
             %\item considering features that are not very %relevant to classification (according to mutual %information) can originate rules that are too %specific to regularities of the training data, %making it harder for the tree to generalize to %unseen data. 
             %\item loosening the tree depth threshold can cause %an excessive split granularity (and thus the %formation of meaningless rules that consider more %factors than needed). 
         \end{itemize}
