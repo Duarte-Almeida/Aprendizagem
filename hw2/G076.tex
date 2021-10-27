@@ -47,7 +47,7 @@
     \vspace{-3.5em}
     \section{Pen and Paper}
     \begin{questions}
-        \item Applying the linear basis function $\phi(\textbf{x}) = (1, \norm{\textbf{x}}_2, \norm{\textbf{x}}_2^2, \norm{\textbf{x}}_2^3)$ (with $\norm{\textbf{x}}_2 = \sqrt{x_1^2 + x_2^2 + x_3^2}$) to each instance $\textbf{x}^{(i)}$ ($i = 1, ..., 8$) in the training set, we get a new design matrix:
+        \item Applying the linear basis function $\phi(\textbf{x}) = (1, \norm{\textbf{x}}_2, \norm{\textbf{x}}_2^2, \norm{\textbf{x}}_2^3)$ (with $\norm{\textbf{x}}_2 = \sqrt{x_1^2 + x_2^2 + x_3^2}$) to each instance $\textbf{x}^{(i)}$ ($i \in \{1, ..., 8\}$) in the training set, we get a new design matrix:
         \begin{equation*}
             \boldsymbol{\Phi} = 
             \begin{bmatrix}
@@ -98,7 +98,7 @@
                 4.5835 & -1.6872 & 0.3377 & -0.0133
             \end{bmatrix} ^T
         \end{align*}
-        \item Similarly to the previous question, we compute the image of each instance $\textbf{x}^{(i)}$ ($i \in \{1,2\}$) from the testing set and place the image $\phi(\textbf{x}^{(i)})$ in each row of the matrix $\boldsymbol{\Phi}$. Using the obtained weight vector $\textbf{w}$, we have the following estimates vector:
+        \item Similarly to the previous question, we compute the image of each instance $\textbf{x}^{(i)}$ ($i \in \{1,2\}$) from the testing set by $\phi$ and place it in each row of the matrix $\boldsymbol{\Phi}$. Using the obtained weight vector $\textbf{w}$, we have the following estimates vector:
         \begin{equation*}
             \textbf{\^{z}} = \boldsymbol{\Phi}\textbf{w} = 
             \begin{bmatrix}
@@ -133,7 +133,7 @@
                 1, & \text{otherwise}
             \end{cases}
         \end{equation*}
-        Considering the given class targets, we have the following data table:
+        Considering the given class targets, we have the following (training) data table:
         \begin{table}[H]
             \centering
             \begin{tabular}{llll}
@@ -156,15 +156,15 @@
             \item Variable conditional entropies and corresponding information gains ($\text{IG}(y_i) = H(t) - H(t|y_i))$:
             \begin{align*}
                 H(t|y_1) &= \sum_{i = 0}^{2} \frac{\#\{k|y_1^{(k)} = i\}}{8}H(t|y_1 = i)\\
-                &= - \sum_{i = 0}^{2} \frac{\#\{k|y_1^{(k)} = i\}}{8} \sum_{j = 0}^{1} \frac{\#\{k|y_1^{(k)} = i, t^{(k)} = j\}}{\#\{k|t^{(k)} = j\}} \log_2\left( \frac{\#\{k|y_1^{(k)} = i, t^{(k)} = j\}}{\#\{k|t^{(k)} = j\}}\right) \\
-                &= - \frac{1}{4}\left( \frac{1}{2}\log_2\left(\frac{1}{2}\right) + \frac{1}{2}\log_2\left(\frac{1}{2}\right)\right) - \frac{1}{2} \left( \frac{3}{4}\log_2\left(\frac{3}{4}\right) + \frac{1}{4}\log_2\left(\frac{1}{4}\right)\right) - \frac{1}{2} \left( 0\log_2\left(0\right) + 1\log_2(1)\right) \\
-                &= 0.6556  \text{ }bit\\
+                &= - \sum_{i = 0}^{2} \frac{\#\{k|y_1^{(k)} = i\}}{8} \sum_{j = 0}^{1} \frac{\#\{k|y_1^{(k)} = i, t^{(k)} = j\}}{\#\{k|y_1^{(k)} = i\}} \log_2\left( \frac{\#\{k|y_1^{(k)} = i, t^{(k)} = j\}}{\#\{k|y_1^{(k)} = i\}}\right) \\
+                &= - \frac{1}{4}\left( \frac{1}{2}\log_2\left(\frac{1}{2}\right) + \frac{1}{2}\log_2\left(\frac{1}{2}\right)\right) - \frac{1}{2} \left( \frac{3}{4}\log_2\left(\frac{3}{4}\right) + \frac{1}{4}\log_2\left(\frac{1}{4}\right)\right) - \frac{1}{4} \left( 0\log_2\left(0\right) + 1\log_2(1)\right) \\
+                &= 0.65556  \text{ }bit\\
                 H(t|y_2) &= - \frac{1}{4}\left(0\log_2(0) + 1\log_2(1)\right) - \frac{3}{8} \left( \frac{2}{3}\log_2\left(\frac{2}{3}\right) + \frac{1}{3}\log_2\left(\frac{1}{3}\right)\right) - \frac{3}{8} \left( \frac{2}{3}\log_2\left(\frac{2}{3}\right) + \frac{1}{3}\log_2\left(\frac{1}{3}\right)\right) \\
                 &= 0.68872  \text{ }bit\\
                 H(t|y_3) &= - \frac{3}{8}\left(\frac{1}{3}\log_2\left(\frac{1}{3}\right) + \frac{2}{3}\log_2\left(\frac{2}{3}\right)\right) - \frac{5}{8} \left( \frac{3}{5}\log_2\left(\frac{3}{5}\right) + \frac{2}{5}\log_2\left(\frac{2}{5}\right)\right) = 0.95121 \text{ }bit
             \end{align*}
             \begin{alignat*}{2}
-                \text{IG}(y_1) = 1 - 0.6556  = 0.34436 \text{ }bit \quad & \text{IG}(y_2) = 0.31128 \text{ }bit \quad & \text{IG}(y_3) = 0.04879 \text{ }bit
+                \text{IG}(y_1) = 1 - 0.65556  = 0.34436 \text{ }bit \quad & \text{IG}(y_2) = 0.31128 \text{ }bit \quad & \text{IG}(y_3) = 0.04879 \text{ }bit
             \end{alignat*}
         \end{itemize}
         Since $y_1$ yields the biggest information gain, it will take part in the first node in the decision tree and the following division in the dataset is obtained:
@@ -179,14 +179,14 @@
                         &           &        & 1         & 0         & P      &           &           &       
             \end{tabular}
         \end{table}
-        Partition $(y_1 = 2)$ has no uncertainty and we cannot reduce uncertainty in partition $(y_1 = 0)$ (note that there is only one value of $y_2$ (resp. $y_3$), so $H(t|y_2, y_1 = 1) = H(t|y_1 = 1)$ (resp., $H(t|y_3, y_1 = 1)$), and there is no possible information gain). We thus proceed to divide partition $(y_1 = 1)$ even further in an analogous way as before: 
+        Partition $(y_1 = 2)$ has no uncertainty and we cannot reduce uncertainty in partition $(y_1 = 0)$ (note that there is only one value of $y_2$ (resp., $y_3$), so $H(t|y_2, y_1 = 1) = H(t|y_1 = 1)$ (resp., $H(t|y_3, y_1 = 1) = H(t|y_1 = 1)$), and there is no possible information gain). We thus proceed to divide partition $(y_1 = 1)$ even further in an analogous way as before: 
         \begin{itemize}
             \item Starting entropy:
         \end{itemize}
         \vspace{-1.75em}
         \begin{flalign*}
-            H(t|y_1 = 1) &= - \sum_{i=0}^{1}\frac{\#\{k|t^{(k)} = i \wedge y_1^{(k)} = 1\}}{\#\{k|y_1^{(k)} = 1\}} \log_2\left(\frac{\#\{k|t^{(k)} = i \wedge y_1^{k} = 1\}}{\#\{k|y_1^{(k)} = 1\}}\right) \\
-            &= - \left(\frac{3}{5}\log_2\left(\frac{3}{4}\right) + \frac{1}{4}\log_2\left(\frac{1}{4}\right)\right) = 0.81127 \medspace bit
+            H(t|y_1 = 1) &= - \sum_{i=0}^{1}\frac{\#\{k|t^{(k)} = i \wedge y_1^{(k)} = 1\}}{\#\{k|y_1^{(k)} = 1\}} \log_2\left(\frac{\#\{k|t^{(k)} = i \wedge y_1^{(k)} = 1\}}{\#\{k|y_1^{(k)} = 1\}}\right) \\
+            &= - \left(\frac{3}{4}\log_2\left(\frac{3}{4}\right) + \frac{1}{4}\log_2\left(\frac{1}{4}\right)\right) = 0.81127 \medspace bit
         \end{flalign*}
         \vspace{-1.5em}
         \begin{itemize}
@@ -236,7 +236,7 @@
         we have that $\textbf{\^{t}}(\textbf{x}^{(9)}) = \text{P}$, and, for $\textbf{x}^{(10)} = 
         \begin{bmatrix}
             1 & 2 & 1
-        \end{bmatrix}^T$, we have that $\textbf{\^{t}}(\textbf{x}^{(10)}) = \text{N}$. Since $\textbf{t}(\textbf{x}^{(9)}) = \text{N}$ and $\textbf{t}(\textbf{x}^{(10)}) = \text{P}$, there are no true positives and no true negatives in the classification of these instances. Hence, accuracy on the testing data is 0 according to the formula $\text{Accuracy} = \frac{TP + TN}{P + N}$.
+        \end{bmatrix}^T$, we have that $\textbf{\^{t}}(\textbf{x}^{(10)}) = \text{N}$. Since $\textbf{t}(\textbf{x}^{(9)}) = \text{N}$ and $\textbf{t}(\textbf{x}^{(10)}) = \text{P}$, there are no true positives and no true negatives in the classification of these instances. Hence, accuracy on the testing data is 0 according to the following formula: $\text{Accuracy} = \frac{TP + TN}{P + N}$.
 
     \end{questions}
     \section{Programming and critical analysis}
@@ -257,13 +257,14 @@
                 {\includegraphics[scale = 0.60]{accuracy_n_tree_depths.pdf} }
             \end{figure}
         \end{parts}
-        \item With the increase of tree size (by number of relevant features or depth), test accuracy grows but training accuracy starts to fall after a certain point, thus revealing a tendency of overfitting to the training data. These behaviours can be explained by the following reasons:
-        \vspace{-0.5em}
+        %\item Both plots exhibit the following correlation: %with the increase of tree size (by number of relevant %features or depth), training accuracy rises but %testing accuracy starts to fall after a certain point, %thus revealing a tendency of overfitting to the %training data. These behaviours can be explained by %the following reasons:
+        \item The correlation between tendencies shown by both plots is due to the following reasons:
+        \vspace{-0.4em}
         \begin{itemize}
-            %\item  an increased number of features/tree depth originates %an excessive split granularity that makes the tree harder to %generalize to unseen data, since it learns rules that are %too specific to the training data instead of recognizing %broader patterns;
-            %\item the presence of noise
-            \item considering features that are not very relevant to classification (according to mutual information) can originate rules that are too specific to regularities of the training data, making it harder for the tree to generalize to unseen data;
-            \item loosening the tree depth threshold  can cause an excessive split granularity (and thus the formation of meaningless rules).
+            \item depth and number of considered features are positively correlated: if there are more features then it is expected that rules consider a bigger number of said features, making the decision tree deeper; if we loosen the depth threshold, then there are less restriction on how many features to consider. Therefore, the interaction between depth/no. of features and training/testing accuracy can become highly similar;
+            \item both an increased number of considered features and tree depth make splits more granular and the rules more specific to the regularities of the training data, making it harder for the model to generalize to unseen data data (i.e., overfitting). Hence the always-rising tendency in training accuracy and a decay in testing accuracy from a certain tree depth/no. of features onwards.
+            %\item considering features that are not very %relevant to classification (according to mutual %information) can originate rules that are too %specific to regularities of the training data, %making it harder for the tree to generalize to %unseen data. 
+            %\item loosening the tree depth threshold can cause %an excessive split granularity (and thus the %formation of meaningless rules that consider more %factors than needed). 
         \end{itemize}
         \item According to the plot in question 5) (ii), the most suitable tree depth is 5, since it is the one that maximizes mean testing accuracy across train/test folds. Consequently, it is the one that is less expected to overfit, following the last argument in the previous question. 
     \end{questions}
