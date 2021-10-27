@@ -245,24 +245,25 @@
         \item
         \begin{parts}
             \item { \quad}
-            \vspace{-3.0em}
+            \vspace{-3.2em}
             \begin{figure}[H]
                 \centering
                 {\includegraphics[scale = 0.60]{accuracy_n_features.pdf} }
             \end{figure}
             \item  {\quad}
-            \vspace{-3.0em}
+            \vspace{-3.2em}
             \begin{figure}[H]
                 \centering
                 {\includegraphics[scale = 0.60]{accuracy_n_tree_depths.pdf} }
             \end{figure}
         \end{parts}
         %\item Both plots exhibit the following correlation: %with the increase of tree size (by number of relevant %features or depth), training accuracy rises but %testing accuracy starts to fall after a certain point, %thus revealing a tendency of overfitting to the %training data. These behaviours can be explained by %the following reasons:
+        \vspace{-1em}
         \item The correlation between tendencies shown by both plots is due to the following reasons:
         \vspace{-0.4em}
         \begin{itemize}
-            \item depth and number of considered features are positively correlated: if there are more features then it is expected that rules consider a bigger number of said features, making the decision tree deeper; if we loosen the depth threshold, then there are less restrictions on how many features to consider. Therefore, the interaction between depth/no. of features and training/testing accuracy can become highly similar;
-            \item both an increased number of considered features (according to decreasing mutual information) and tree depth make splits more granular and the rules more specific to the regularities of the training data, making it harder for the model to generalize to unseen data (i.e., there is overfitting). Hence the always-rising tendency in training accuracy and a decay in testing accuracy from a certain tree depth/no. of features onwards.
+            \item depth and number of considered features are positively correlated: if there are more features then it is expected that rules consider a bigger number of said features, making the decision tree deeper; if we loosen the depth threshold, then it is more likely for the learning algorithm to consider more features (in particular, features which provide a smaller information gain start to be taken into account at some point during the expansion of the tree). Therefore, interactions between depth/no. of features and training/testing accuracy can become highly similar;
+            \item both an increased number of considered features (according to decreasing mutual information) and tree depth make splits more granular and the rules more specific to the regularities of the training data, making it harder for the model to generalize to unseen data (i.e., there is overfitting). Hence the always-rising tendency in training accuracy and a decay in testing accuracy from a certain tree depth/no. of features onwards (5, to be exact).
             %\item considering features that are not very %relevant to classification (according to mutual %information) can originate rules that are too %specific to regularities of the training data, %making it harder for the tree to generalize to %unseen data. 
             %\item loosening the tree depth threshold can cause %an excessive split granularity (and thus the %formation of meaningless rules that consider more %factors than needed). 
         \end{itemize}
