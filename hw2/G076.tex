@@ -117,7 +117,7 @@
         
         \item To make an equal depth binarization of $y_3$, we compute the median of the values of $y_3$ of all the instances in the dataset:
         \begin{equation*}
-             \text{median}(\{x^{(i)}_{3}\}_{i = 1}^{10}) = 2.5
+             \text{median}(\{y^{(i)}_{3}\}_{i = 1}^{10}) = 2.5
         \end{equation*}
         and make the following transformation to $y_3$:
         \begin{equation*}
@@ -173,23 +173,23 @@
                         &           &        & 1         & 0         & P      &           &           &       
             \end{tabular}
         \end{table}
-        Partition $(y_1 = 2)$ has no uncertainty and we cannot reduce uncertainty in partition $(y_1 = 0)$ (note that there is only one value of $y_2$ (resp. $y_3$), so $H(t|y_2, y_1 = 1) = H(t|y_1 = 1)$ (resp., $H(t|y_3, y_1 = 1)$), so there is no possible information gain). We thus proceed to divide partition $(y_1 = 1)$ even further in an analogous way as before: 
+        Partition $(y_1 = 2)$ has no uncertainty and we cannot reduce uncertainty in partition $(y_1 = 0)$ (note that there is only one value of $y_2$ (resp. $y_3$), so $H(t|y_2, y_1 = 1) = H(t|y_1 = 1)$ (resp., $H(t|y_3, y_1 = 1)$), and there is no possible information gain). We thus proceed to divide partition $(y_1 = 1)$ even further in an analogous way as before: 
         \begin{itemize}
             \item Starting entropy:
         \end{itemize}
         \vspace{-1.75em}
         \begin{flalign*}
             H(t|y_1 = 1) &= - \sum_{i=0}^{1}\frac{\#\{k|t^{(k)} = i \wedge y_1^{(k)} = 1\}}{\#\{k|y_1^{(k)} = 1\}} \log_2\left(\frac{\#\{k|t^{(k)} = i \wedge y_1^{k} = 1\}}{\#\{k|y_1^{(k)} = 1\}}\right) \\
-            &= - \left(\frac{3}{5}\log_2\left(\frac{3}{4}\right) + \frac{1}{4}\log_2\left(\frac{1}{4}\right)\right) = 0.688721 \medspace bit
+            &= - \left(\frac{3}{5}\log_2\left(\frac{3}{4}\right) + \frac{1}{4}\log_2\left(\frac{1}{4}\right)\right) = 0.81127 \medspace bit
         \end{flalign*}
         \vspace{-1.5em}
         \begin{itemize}
-            \item Variable conditional entropies and corresponding information gains (where $\text{IG}(y_i|y_1 = 1) = H(t|y_1 = 1) - H(t|y_i, y_1 = 1))$:
+            \item Variable conditional entropies and corresponding information gains (where $\text{IG}(y_i|y_1 = 1) = H(t|y_1 = 1) - H(t|y_i, y_1 = 1)$; also note that $\#\{k|y_2^{(k)} = 0 \wedge y_1^{(k)} = 1\} = 0$, so $H(t|y_2 = 0, y_1 = 1)$ is not defined and we discard that term from the first sum):
         \end{itemize}
         \vspace{-1em}
         \begin{gather*}
-            H(t|y_2, y_1 = 1) = \sum_{i = 0}^{2} \frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}}{\#\{k|y_1^{(k)} = 1)\}}H(t|y_2 = i, y_1 = 1) \\
-                = - \sum_{i = 0}^{2}  \frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1)\}}{\#\{k|y_1^{(k)} = 1\}} \sum_{j = 0}^{1}  \frac{\#\{k|t^{(k)} = j \wedge y_2^{(k)} = i \wedge y_1^{(k) } = 1)\}}{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}} \log_2\left(\frac{\#\{k|t^{(k)} = j \wedge y_2^{(k)} = i \wedge y_1^{(k) } = 1)\}}{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}}\right) \\
+            H(t|y_2, y_1 = 1) = \sum_{i = 1}^{2} \frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}}{\#\{k|y_1^{(k)} = 1)\}}H(t|y_2 = i, y_1 = 1) \\
+                = - \sum_{i = 1}^{2}  \frac{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1)\}}{\#\{k|y_1^{(k)} = 1\}} \sum_{j = 0}^{1}  \frac{\#\{k|t^{(k)} = j \wedge y_2^{(k)} = i \wedge y_1^{(k) } = 1)\}}{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}} \log_2\left(\frac{\#\{k|t^{(k)} = j \wedge y_2^{(k)} = i \wedge y_1^{(k) } = 1)\}}{\#\{k|y_2^{(k)} = i \wedge y_1^{(k)} = 1\}}\right) \\
                 = - \frac{3}{4}\left( \frac{2}{3}\log_2\left(\frac{2}{3}\right) + \frac{1}{3}\log_2\left(\frac{1}{3}\right)\right) - \frac{1}{4} \left( 1\log_2(1) + 0\log_2(0)\right) 
                 = 0.688721 \medspace bit\\
             H(t|y_3, y_1 = 1)
@@ -200,7 +200,7 @@
         \begin{alignat*}{2}
             \text{IG}(y_2|y_1 = 1) = 0.81127 - 0.688721  = 0.1225979 \text{ }bit \quad & \text{IG}(y_3|y_1 = 1) = 0.81127 - 0.5  = 0.31127 \text{ }bit 
         \end{alignat*}
-        As $y_3$ provides the biggest information gain, it will originate a new partition in the partition $y_1 = 1$. The following divided dataset cannot be further partitioned ($(y_1 = 1, y_3 = 1)$ has no uncertainty and we can't obtain information gain from dividing $(y_1 = 1, y_3 = 0)$ for the same argument as the applied above to $(y_1 = 0)$):
+        As $y_3$ provides the biggest information gain, it will divide the partition $(y_1 = 1)$. The resulting dataset cannot be further partitioned ($(y_1 = 1, y_3 = 1)$ has no uncertainty and we can't obtain information gain from dividing $(y_1 = 1, y_3 = 0)$ for the same argument as the one applied to $(y_1 = 0)$):
         \begin{table}[H]
             \centering
             \begin{tabular}{lll|ll|ll|lll}
@@ -211,7 +211,7 @@
                       &           &         & 1               & P            & 2               & N            &           &           &       
             \end{tabular}
         \end{table}
-        And thus we have the desired decision tree:
+        Thus, we have the desired decision tree:
         \vspace{-0.25em}
         \begin{table}[H]
             \centering
@@ -230,7 +230,7 @@
         we have that $\textbf{\^{t}}(\textbf{x}^{(9)}) = \text{P}$, and, for $\textbf{x}^{(10)} = 
         \begin{bmatrix}
             1 & 2 & 1
-        \end{bmatrix}^T$, we have that $\textbf{\^{t}}(\textbf{x}^{(10)}) = \text{N}$. Since $\textbf{t}(\textbf{x}^{(9)}) = \text{N}$ and $\textbf{t}(\textbf{x}^{(10)}) = \text{P}$ there are no true positives and no true negatives in the classification of these instances. Thus, accuracy on the testing data is 0 according to the formula $\text{Accuracy} = \frac{TP + TN}{P + N}$.
+        \end{bmatrix}^T$, we have that $\textbf{\^{t}}(\textbf{x}^{(10)}) = \text{N}$. Since $\textbf{t}(\textbf{x}^{(9)}) = \text{N}$ and $\textbf{t}(\textbf{x}^{(10)}) = \text{P}$, there are no true positives and no true negatives in the classification of these instances. Hence, accuracy on the testing data is 0 according to the formula $\text{Accuracy} = \frac{TP + TN}{P + N}$.
 
     \end{questions}
     \section{Programming and critical analysis}
@@ -239,6 +239,7 @@
         \item
         \begin{parts}
             \item  \hspace{21em} (ii)
+            \vspace{-1.2em}
             \begin{figure}[H]
                 \centering
                 \subfloat{{\includegraphics[scale = 0.47]{accuracy_n_features.pdf} }}%
@@ -246,6 +247,15 @@
                 \subfloat{{\includegraphics[scale = 0.47]{accuracy_n_depths.pdf} }}
             \end{figure}
         \end{parts}
+        \item With the increase of tree size (by number of relevant features or depth), test accuracy grows but training accuracy starts to fall after a certain point, thus revealing a tendency of overfitting to the training data. These behaviours can be explained by the following reasons:
+        \vspace{-0.5em}
+        \begin{itemize}
+            %\item  an increased number of features/tree depth originates %an excessive split granularity that makes the tree harder to %generalize to unseen data, since it learns rules that are %too specific to the training data instead of recognizing %broader patterns;
+            %\item the presence of noise
+            \item considering features that are not very relevant to classification (according to mutual information) can originate rules that are too specific to regularities of the training data, making it harder for the tree to generalize to unseen data;
+            \item loosening the tree depth threshold  can cause an excessive split granularity (and thus the formation of meaningless rules).
+        \end{itemize}
+        \item According to the plot in question 5) (ii), the most suitable tree depth is 5, since it is the one that maximizes mean testing accuracy across train/test folds. Consequently, it is the one that is less expected to overfit, following the last argument in the previous question. 
     \end{questions}
     
 \end{document}
