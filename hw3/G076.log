@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.3)  28 OCT 2021 01:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.3)  3 NOV 2021 14:48
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/duartealmeida/Apre/homeworks/hw2/G076.tex
-(/Users/duartealmeida/Apre/homeworks/hw2/G076.tex
+**/Users/duartealmeida/Apre/homeworks/hw3/G076.tex
+(/Users/duartealmeida/Apre/homeworks/hw3/G076.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> (/usr/local/texlive/2021/texmf-dist/tex/latex/exam/exam.cls
 Document Class: exam 2021/02/26 Version 2.7 by Philip Hirschhorn
@@ -537,7 +537,7 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )
 runsystem(uname -s > "G076.w18")...executed.
 
- (/Users/duartealmeida/Apre/homeworks/hw2/G076.w18)
+ (/Users/duartealmeida/Apre/homeworks/hw3/G076.w18)
 runsystem(rm -- "G076.w18")...executed.
 
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/xstring/xstring.sty (/usr/local/texlive/2021/texmf-dist/tex/generic/xstring/xstring.tex
@@ -586,7 +586,7 @@ runsystem(rm G076.aex)...executed.
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count370
 \l__pdf_internal_box=\box71
-) (/Users/duartealmeida/Apre/homeworks/hw2/G076.aux)
+) (/Users/duartealmeida/Apre/homeworks/hw3/G076.aux)
 \openout1 = `G076.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
@@ -638,73 +638,24 @@ File: ./src/output/logo_ist.jpeg Graphic file (type jpg)
 <use ./src/output/logo_ist.jpeg>
 Package pdftex.def Info: ./src/output/logo_ist.jpeg  used on input line 45.
 (pdftex.def)             Requested size: 105.39532pt x 46.37393pt.
+ [1
 
-Overfull \hbox (11.91432pt too wide) detected at line 100
-[]
- []
-
-[1
-
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/duartealmeida/Apre/homeworks/hw2/./src/output/logo_ist.jpeg>]
-Overfull \hbox (25.74211pt too wide) detected at line 165
-[]
- []
-
-[2]
-Overfull \hbox (1.83878pt too wide) in paragraph at lines 193--194
-[]\OT1/cmr/m/n/10 Variable con-di-tional en-tropies and cor-re-spond-ing in-for-ma-tion gains (where $[](\OML/cmm/m/it/10 y[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 y[] \OT1/cmr/m/n/10 = 1) = \OML/cmm/m/it/10 H\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 y[] \OT1/cmr/m/n/10 =
- []
-
-
-Overfull \hbox (62.33444pt too wide) detected at line 204
-[]
- []
-
-<./src/output/accuracy_n_features.pdf, id=25, 462.52798pt x 346.89601pt>
-File: ./src/output/accuracy_n_features.pdf Graphic file (type pdf)
-<use ./src/output/accuracy_n_features.pdf>
-Package pdftex.def Info: ./src/output/accuracy_n_features.pdf  used on input line 251.
-(pdftex.def)             Requested size: 277.51892pt x 208.1392pt.
-[3]
-<./src/output/accuracy_n_tree_depths.pdf, id=29, 462.52798pt x 346.89601pt>
-File: ./src/output/accuracy_n_tree_depths.pdf Graphic file (type pdf)
-<use ./src/output/accuracy_n_tree_depths.pdf>
-Package pdftex.def Info: ./src/output/accuracy_n_tree_depths.pdf  used on input line 257.
-(pdftex.def)             Requested size: 277.51892pt x 208.1392pt.
- [4 </Users/duartealmeida/Apre/homeworks/hw2/./src/output/accuracy_n_features.pdf> </Users/duartealmeida/Apre/homeworks/hw2/./src/output/accuracy_n_tree_depths.pdf
-
-pdfTeX warning: pdflatex (file /Users/duartealmeida/Apre/homeworks/hw2/./src/output/accuracy_n_tree_depths.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] (/Users/duartealmeida/Apre/homeworks/hw2/_minted-G076/default-pyg-prefix.pygstyle) (/Users/duartealmeida/Apre/homeworks/hw2/_minted-G076/default.pygstyle) (/Users/duartealmeida/Apre/homeworks/hw2/_minted-G076/54C6912A3E866231B8DCF2D2ECB5B8DE6BD571868154877D37774C8CAD6285CF.pygtex
-LaTeX Font Info:    Trying to load font information for OT1+zi4 on input line 1.
- (/usr/local/texlive/2021/texmf-dist/tex/latex/inconsolata/ot1zi4.fd
-File: ot1zi4.fd 2018/01/14 OT1/zi4 (Inconsolata)
-)
-LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 1.
-LaTeX Font Info:    Font shape `OT1/zi4/b/n' will be
-(Font)              scaled to size 10.0pt on input line 2.
-LaTeX Font Info:    Trying to load font information for TS1+zi4 on input line 12.
- (/usr/local/texlive/2021/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
-File: ts1zi4.fd 2018/01/14 TS1/zi4 (Inconsolata)
-)
-LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 12.
-) [5]
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/duartealmeida/Apre/homeworks/hw3/./src/output/logo_ist.jpeg>]
 This exam contains 0 questions with 0 parts, 0 subparts, and 0 subsubparts.
-(/Users/duartealmeida/Apre/homeworks/hw2/G076.aux) ) 
+(/Users/duartealmeida/Apre/homeworks/hw3/G076.aux) ) 
 Here is how much of TeX's memory you used:
- 19297 strings out of 478994
- 380207 string characters out of 5858185
- 734299 words of memory out of 5000000
- 36400 multiletter control sequences out of 15000+600000
- 414472 words of font info for 69 fonts, out of 8000000 for 9000
+ 19004 strings out of 478994
+ 375106 string characters out of 5858185
+ 725172 words of memory out of 5000000
+ 36137 multiletter control sequences out of 15000+600000
+ 411940 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,14n,116p,654b,610s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /Users/duartealmeida/Apre/homeworks/hw2/G076.pdf (5 pages, 243402 bytes).
+ 113i,15n,116p,461b,610s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on /Users/duartealmeida/Apre/homeworks/hw3/G076.pdf (1 page, 145811 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
+ 69 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 28 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

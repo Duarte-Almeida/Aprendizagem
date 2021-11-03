@@ -1,7 +1,6 @@
 import numpy as np
 from scipy.special import softmax
 from termcolor import cprint
-import copy
 
 # make latex typesetting easier
 def print_matrix(matrix):
