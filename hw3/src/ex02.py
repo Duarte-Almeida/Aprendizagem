@@ -18,26 +18,18 @@ def load_data(filename):
     return dataset
 
 #  MLP with l2 regularization, RELU activation function, 2 hidden layers of size 3,2 and remaining default parameters.
-def mlp_predict(type,inputs, outputs, folds, early_stopping, alpha):
-    if type == "classifier":
-        clf = neural_network.MLPClassifier(activation = 'relu', solver = 'sgd', \
+def mlp_predict(func ,inputs, outputs, folds, early_stopping, alpha):
+    clf = func(activation = 'relu', solver = 'sgd', \
                                             hidden_layer_sizes = (3, 2), \
                                             random_state = 76, \
                                             early_stopping = early_stopping, \
                                             alpha=alpha, \
                                             max_iter=1500)
-    elif type == "regressor":
-        clf = neural_network.MLPRegressor(activation = 'relu', solver = 'sgd', \
-                                        hidden_layer_sizes = (3, 2), \
-                                        random_state = 76, \
-                                        early_stopping = early_stopping, \
-                                        alpha=alpha, \
-                                        max_iter=1500)
     return model_selection.cross_val_predict(clf, inputs, outputs, cv=folds)
 
 # Plots the confusion matrix for a given MLP with/without early stopping
 def mlp_conf_matrix(inputs, outputs, folds, early_stopping):
-    outputs_pred = mlp_predict("classifier", inputs, outputs, folds, early_stopping, 1)
+    outputs_pred = mlp_predict(neural_network.MLPClassifier, inputs, outputs, folds, early_stopping, 1)
     conf_mat = metrics.confusion_matrix(outputs, outputs_pred)
     disp = metrics.ConfusionMatrixDisplay(confusion_matrix=conf_mat, display_labels=['Benign','Malign']).plot()
     disp.ax_.set(xlabel='Predicted', ylabel='True', \
@@ -46,7 +38,7 @@ def mlp_conf_matrix(inputs, outputs, folds, early_stopping):
 
 # Returns the residues of the distribution with/without regularization
 def residue_dist_bp(inputs, outputs, folds, regularization):
-    return outputs - mlp_predict("regressor", inputs, outputs, folds, True, 1 if regularization else 1e-5)
+    return outputs - mlp_predict(neural_network.MLPRegressor, inputs, outputs, folds, True, 1 if regularization else 1e-5)
 
 
 def main():
