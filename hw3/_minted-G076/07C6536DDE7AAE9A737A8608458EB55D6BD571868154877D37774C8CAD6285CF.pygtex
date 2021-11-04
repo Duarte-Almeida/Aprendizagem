@@ -1,0 +1,74 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{from} \PYG{n+nn}{scipy.io} \PYG{k+kn}{import} \PYG{n}{arff}
+\PYG{k+kn}{from} \PYG{n+nn}{sklearn} \PYG{k+kn}{import} \PYG{n}{neural\PYGZus{}network}\PYG{p}{,} \PYG{n}{model\PYGZus{}selection}\PYG{p}{,} \PYG{n}{preprocessing}\PYG{p}{,} \PYG{n}{feature\PYGZus{}selection}\PYG{p}{,} \PYG{n}{metrics}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}text.usetex\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{k+kc}{True}
+
+\PYG{k}{def} \PYG{n+nf}{load\PYGZus{}data}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{):}
+    \PYG{n}{dataset} \PYG{o}{=} \PYG{n}{arff}\PYG{o}{.}\PYG{n}{loadarff}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}
+    \PYG{n}{dataset} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{dataset}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+    \PYG{c+c1}{\PYGZsh{} REVIEW: this decode breaks for kin dataset but is necessary for breast\PYGZus{}data}
+    \PYG{k}{try}\PYG{p}{:}
+        \PYG{n}{dataset}\PYG{p}{[}\PYG{n}{dataset}\PYG{o}{.}\PYG{n}{columns}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{dataset}\PYG{p}{[}\PYG{n}{dataset}\PYG{o}{.}\PYG{n}{columns}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]]}\PYG{o}{.}\PYG{n}{str}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}utf8\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{except} \PYG{n+ne}{AttributeError}\PYG{p}{:}
+        \PYG{c+c1}{\PYGZsh{} kin will pass this}
+        \PYG{k}{pass}
+    \PYG{n}{dataset} \PYG{o}{=} \PYG{n}{dataset}\PYG{o}{.}\PYG{n}{dropna}\PYG{p}{()}  
+    \PYG{k}{return} \PYG{n}{dataset}
+
+\PYG{c+c1}{\PYGZsh{}  MLP with l2 regularization, RELU activation function, 2 hidden layers of size 3,2 and remaining default parameters.}
+\PYG{k}{def} \PYG{n+nf}{mlp\PYGZus{}predict}\PYG{p}{(}\PYG{n+nb}{type}\PYG{p}{,}\PYG{n}{inputs}\PYG{p}{,} \PYG{n}{outputs}\PYG{p}{,} \PYG{n}{folds}\PYG{p}{,} \PYG{n}{early\PYGZus{}stopping}\PYG{p}{,} \PYG{n}{alpha}\PYG{p}{):}
+    \PYG{k}{if} \PYG{n+nb}{type} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}classifier\PYGZdq{}}\PYG{p}{:}
+        \PYG{n}{clf} \PYG{o}{=} \PYG{n}{neural\PYGZus{}network}\PYG{o}{.}\PYG{n}{MLPClassifier}\PYG{p}{(}\PYG{n}{activation} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{,} \PYG{n}{solver} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}sgd\PYGZsq{}}\PYG{p}{,} \PYGZbs{}
+                                            \PYG{n}{hidden\PYGZus{}layer\PYGZus{}sizes} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{),} \PYGZbs{}
+                                            \PYG{n}{random\PYGZus{}state} \PYG{o}{=} \PYG{l+m+mi}{76}\PYG{p}{,} \PYGZbs{}
+                                            \PYG{n}{early\PYGZus{}stopping} \PYG{o}{=} \PYG{n}{early\PYGZus{}stopping}\PYG{p}{,} \PYGZbs{}
+                                            \PYG{n}{alpha}\PYG{o}{=}\PYG{n}{alpha}\PYG{p}{,} \PYGZbs{}
+                                            \PYG{n}{max\PYGZus{}iter}\PYG{o}{=}\PYG{l+m+mi}{1500}\PYG{p}{)}
+    \PYG{k}{elif} \PYG{n+nb}{type} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}regressor\PYGZdq{}}\PYG{p}{:}
+        \PYG{n}{clf} \PYG{o}{=} \PYG{n}{neural\PYGZus{}network}\PYG{o}{.}\PYG{n}{MLPRegressor}\PYG{p}{(}\PYG{n}{activation} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{,} \PYG{n}{solver} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}sgd\PYGZsq{}}\PYG{p}{,} \PYGZbs{}
+                                        \PYG{n}{hidden\PYGZus{}layer\PYGZus{}sizes} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{),} \PYGZbs{}
+                                        \PYG{n}{random\PYGZus{}state} \PYG{o}{=} \PYG{l+m+mi}{76}\PYG{p}{,} \PYGZbs{}
+                                        \PYG{n}{early\PYGZus{}stopping} \PYG{o}{=} \PYG{n}{early\PYGZus{}stopping}\PYG{p}{,} \PYGZbs{}
+                                        \PYG{n}{alpha}\PYG{o}{=}\PYG{n}{alpha}\PYG{p}{,} \PYGZbs{}
+                                        \PYG{n}{max\PYGZus{}iter}\PYG{o}{=}\PYG{l+m+mi}{1500}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{model\PYGZus{}selection}\PYG{o}{.}\PYG{n}{cross\PYGZus{}val\PYGZus{}predict}\PYG{p}{(}\PYG{n}{clf}\PYG{p}{,} \PYG{n}{inputs}\PYG{p}{,} \PYG{n}{outputs}\PYG{p}{,} \PYG{n}{cv}\PYG{o}{=}\PYG{n}{folds}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Plots the confusion matrix for a given MLP with/without early stopping}
+\PYG{k}{def} \PYG{n+nf}{mlp\PYGZus{}conf\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{inputs}\PYG{p}{,} \PYG{n}{outputs}\PYG{p}{,} \PYG{n}{folds}\PYG{p}{,} \PYG{n}{early\PYGZus{}stopping}\PYG{p}{):}
+    \PYG{n}{outputs\PYGZus{}pred} \PYG{o}{=} \PYG{n}{mlp\PYGZus{}predict}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}classifier\PYGZdq{}}\PYG{p}{,} \PYG{n}{inputs}\PYG{p}{,} \PYG{n}{outputs}\PYG{p}{,} \PYG{n}{folds}\PYG{p}{,} \PYG{n}{early\PYGZus{}stopping}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{n}{conf\PYGZus{}mat} \PYG{o}{=} \PYG{n}{metrics}\PYG{o}{.}\PYG{n}{confusion\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{outputs}\PYG{p}{,} \PYG{n}{outputs\PYGZus{}pred}\PYG{p}{)}
+    \PYG{n}{disp} \PYG{o}{=} \PYG{n}{metrics}\PYG{o}{.}\PYG{n}{ConfusionMatrixDisplay}\PYG{p}{(}\PYG{n}{confusion\PYGZus{}matrix}\PYG{o}{=}\PYG{n}{conf\PYGZus{}mat}\PYG{p}{,} \PYG{n}{display\PYGZus{}labels}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}Benign\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}Malign\PYGZsq{}}\PYG{p}{])}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{()}
+    \PYG{n}{disp}\PYG{o}{.}\PYG{n}{ax\PYGZus{}}\PYG{o}{.}\PYG{n}{set}\PYG{p}{(}\PYG{n}{xlabel}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}Predicted\PYGZsq{}}\PYG{p}{,} \PYG{n}{ylabel}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}True\PYGZsq{}}\PYG{p}{,} \PYGZbs{}
+        \PYG{n}{title}\PYG{o}{=}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}Confusion Matrix }\PYG{l+s+si}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}(with early stopping)\PYGZdq{}} \PYG{k}{if} \PYG{n}{early\PYGZus{}stopping} \PYG{k}{else} \PYG{l+s+s2}{\PYGZdq{}(without early stopping)\PYGZdq{}}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+
+\PYG{c+c1}{\PYGZsh{} Plots the distribution of the residues using boxplots with/without regularization}
+\PYG{k}{def} \PYG{n+nf}{residue\PYGZus{}dist\PYGZus{}bp}\PYG{p}{(}\PYG{n}{inputs}\PYG{p}{,} \PYG{n}{outputs}\PYG{p}{,} \PYG{n}{folds}\PYG{p}{,} \PYG{n}{regularization}\PYG{p}{):}
+    \PYG{n}{residue\PYGZus{}dist} \PYG{o}{=} \PYG{n}{outputs} \PYG{o}{\PYGZhy{}} \PYG{n}{mlp\PYGZus{}predict}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}regressor\PYGZdq{}}\PYG{p}{,} \PYG{n}{inputs}\PYG{p}{,} \PYG{n}{outputs}\PYG{p}{,} \PYG{n}{folds}\PYG{p}{,} \PYG{k+kc}{True}\PYG{p}{,} \PYG{l+m+mi}{1} \PYG{k}{if} \PYG{n}{regularization} \PYG{k}{else} \PYG{l+m+mf}{1e\PYGZhy{}5}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{residue\PYGZus{}dist}\PYG{p}{)}
+
+\PYG{k}{def} \PYG{n+nf}{main}\PYG{p}{():}
+    \PYG{n}{kf} \PYG{o}{=} \PYG{n}{model\PYGZus{}selection}\PYG{o}{.}\PYG{n}{KFold}\PYG{p}{(}\PYG{n}{n\PYGZus{}splits} \PYG{o}{=} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{shuffle} \PYG{o}{=} \PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{random\PYGZus{}state} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} 2) =====}
+    \PYG{c+c1}{\PYGZsh{}breast\PYGZus{}data = load\PYGZus{}data(\PYGZdq{}../data/breast.w.arff\PYGZdq{})}
+    \PYG{c+c1}{\PYGZsh{}inputs\PYGZus{}breast = breast\PYGZus{}data.iloc[:, :\PYGZhy{}1].to\PYGZus{}numpy()}
+    \PYG{c+c1}{\PYGZsh{}outputs\PYGZus{}breast = breast\PYGZus{}data.iloc[:, [\PYGZhy{}1]].to\PYGZus{}numpy().T.flatten()}
+    \PYG{c+c1}{\PYGZsh{}mlp\PYGZus{}conf\PYGZus{}matrix(inputs\PYGZus{}breast, outputs\PYGZus{}breast, kf, True)}
+    \PYG{c+c1}{\PYGZsh{}mlp\PYGZus{}conf\PYGZus{}matrix(inputs\PYGZus{}breast, outputs\PYGZus{}breast, kf, False)}
+
+    \PYG{c+c1}{\PYGZsh{} 3) =====}
+    \PYG{n}{kin\PYGZus{}data} \PYG{o}{=} \PYG{n}{load\PYGZus{}data}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}../data/kin8nm.arff\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{inputs\PYGZus{}kin} \PYG{o}{=} \PYG{n}{kin\PYGZus{}data}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[:,} \PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{to\PYGZus{}numpy}\PYG{p}{()}
+    \PYG{n}{outputs\PYGZus{}kin} \PYG{o}{=} \PYG{n}{kin\PYGZus{}data}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[:,} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]]}\PYG{o}{.}\PYG{n}{to\PYGZus{}numpy}\PYG{p}{()}\PYG{o}{.}\PYG{n}{T}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{()}
+    \PYG{n}{residue\PYGZus{}dist\PYGZus{}bp}\PYG{p}{(}\PYG{n}{inputs\PYGZus{}kin}\PYG{p}{,} \PYG{n}{outputs\PYGZus{}kin}\PYG{p}{,} \PYG{n}{kf}\PYG{p}{,} \PYG{k+kc}{True}\PYG{p}{)}
+    \PYG{n}{residue\PYGZus{}dist\PYGZus{}bp}\PYG{p}{(}\PYG{n}{inputs\PYGZus{}kin}\PYG{p}{,} \PYG{n}{outputs\PYGZus{}kin}\PYG{p}{,} \PYG{n}{kf}\PYG{p}{,} \PYG{k+kc}{False}\PYG{p}{)}
+
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+
+\PYG{k}{if} \PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{p}{:}
+    \PYG{n}{main}\PYG{p}{()}
+\end{Verbatim}

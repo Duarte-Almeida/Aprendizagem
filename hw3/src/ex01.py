@@ -198,8 +198,8 @@ def backprop(input, target, weights, biases, error_fn_dvt, layer_act_fn, layer_a
         
 
 def main():
-    backprop(np.array([[1,1,1,1,1]]).T, np.array([[1, -1]]).T, weights, biases, \
-             sqerror_dvt, np.tanh, tanh_dvt, np.tanh, tanh_gradient, 0.1)
+    #backprop(np.array([[1,1,1,1,1]]).T, np.array([[1, -1]]).T, weights, biases, \
+    #         sqerror_dvt, np.tanh, tanh_dvt, np.tanh, tanh_gradient, 0.1)
     backprop(np.array([[1,1,1,1,1]]).T, np.array([[1, 0]]).T, weights, biases, \
              crentropy_dvt, np.tanh, tanh_dvt, softmax, softmax_gradient, 0.1)
     
