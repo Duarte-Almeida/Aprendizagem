@@ -46,8 +46,8 @@ def mlp_conf_matrix(inputs, outputs, folds, early_stopping):
 
 # Plots the distribution of the residues using boxplots with/without regularization
 def residue_dist_bp(inputs, outputs, folds, regularization):
-    residue_dist = outputs - mlp_predict("regressor", inputs, outputs, folds, True, 1 if regularization else 1e-5)
-    print(residue_dist)
+    return outputs - mlp_predict("regressor", inputs, outputs, folds, True, 1 if regularization else 1e-5)
+
 
 def main():
     kf = model_selection.KFold(n_splits = 5, shuffle = True, random_state = 0)
@@ -63,9 +63,16 @@ def main():
     kin_data = load_data("../data/kin8nm.arff")
     inputs_kin = kin_data.iloc[:, :-1].to_numpy()
     outputs_kin = kin_data.iloc[:, [-1]].to_numpy().T.flatten()
-    residue_dist_bp(inputs_kin, outputs_kin, kf, True)
-    residue_dist_bp(inputs_kin, outputs_kin, kf, False)
-
+    residue_bp1 = residue_dist_bp(inputs_kin, outputs_kin, kf, True)
+    residue_bp2 = residue_dist_bp(inputs_kin, outputs_kin, kf, False)
+    residues = np.column_stack((residue_bp1, residue_bp2))
+    
+    fig, disp = plt.subplots()
+    disp.set_title('Multiple Samples with Different sizes')
+    disp.boxplot(residues, vert=False)
+    disp.set_axisbelow(True)
+    disp.set_yticklabels(['with regularization','without regularization'])
+    disp.set_title('Comparison of residues in the presence and absence of regularization')
     plt.show()
 
 if __name__ == "__main__":
