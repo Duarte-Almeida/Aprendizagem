@@ -44,7 +44,7 @@ def mlp_conf_matrix(inputs, outputs, folds, early_stopping):
         title=f'Confusion Matrix {"(with early stopping)" if early_stopping else "(without early stopping)"}')
 
 
-# Plots the distribution of the residues using boxplots with/without regularization
+# Returns the residues of the distribution with/without regularization
 def residue_dist_bp(inputs, outputs, folds, regularization):
     return outputs - mlp_predict("regressor", inputs, outputs, folds, True, 1 if regularization else 1e-5)
 
