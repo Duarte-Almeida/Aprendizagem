@@ -53,11 +53,11 @@ def main():
     kf = model_selection.KFold(n_splits = 5, shuffle = True, random_state = 0)
 
     # 2) =====
-    #breast_data = load_data("../data/breast.w.arff")
-    #inputs_breast = breast_data.iloc[:, :-1].to_numpy()
-    #outputs_breast = breast_data.iloc[:, [-1]].to_numpy().T.flatten()
-    #mlp_conf_matrix(inputs_breast, outputs_breast, kf, True)
-    #mlp_conf_matrix(inputs_breast, outputs_breast, kf, False)
+    breast_data = load_data("../data/breast.w.arff")
+    inputs_breast = breast_data.iloc[:, :-1].to_numpy()
+    outputs_breast = breast_data.iloc[:, [-1]].to_numpy().T.flatten()
+    mlp_conf_matrix(inputs_breast, outputs_breast, kf, True)
+    mlp_conf_matrix(inputs_breast, outputs_breast, kf, False)
 
     # 3) =====
     kin_data = load_data("../data/kin8nm.arff")
