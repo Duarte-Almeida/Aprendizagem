@@ -65,6 +65,5 @@ def main():
     outputs_kin = kin_data.iloc[:, [-1]].to_numpy().T.flatten()
     residue_dist_bp(inputs_kin, outputs_kin, kf)
     
-
 if __name__ == "__main__":
     main()

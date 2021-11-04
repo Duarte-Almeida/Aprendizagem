@@ -66,6 +66,14 @@
     \PYG{n}{outputs\PYGZus{}kin} \PYG{o}{=} \PYG{n}{kin\PYGZus{}data}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[:,} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]]}\PYG{o}{.}\PYG{n}{to\PYGZus{}numpy}\PYG{p}{()}\PYG{o}{.}\PYG{n}{T}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{()}
     \PYG{n}{residue\PYGZus{}dist\PYGZus{}bp}\PYG{p}{(}\PYG{n}{inputs\PYGZus{}kin}\PYG{p}{,} \PYG{n}{outputs\PYGZus{}kin}\PYG{p}{,} \PYG{n}{kf}\PYG{p}{)}
     
+\PYG{o}{\PYGZlt{}\PYGZlt{}\PYGZlt{}\PYGZlt{}\PYGZlt{}\PYGZlt{}\PYGZlt{}} \PYG{n}{HEAD}
+\PYG{o}{=======}
+    \PYG{n}{fig}\PYG{p}{,} \PYG{n}{disp} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{()}
+    \PYG{n}{disp}\PYG{o}{.}\PYG{n}{boxplot}\PYG{p}{(}\PYG{n}{residues}\PYG{p}{,} \PYG{n}{vert}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{patch\PYGZus{}artist}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+    \PYG{n}{disp}\PYG{o}{.}\PYG{n}{set\PYGZus{}yticklabels}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}with regularization\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}without regularization\PYGZsq{}}\PYG{p}{])}
+    \PYG{n}{disp}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Comparison of residues in the presence and absence of regularization\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+\PYG{o}{\PYGZgt{}\PYGZgt{}\PYGZgt{}\PYGZgt{}\PYGZgt{}\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{329}\PYG{n}{bb80e7f23b930bb831691974740f7b1df11c3}
 
 \PYG{k}{if} \PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{p}{:}
     \PYG{n}{main}\PYG{p}{()}
