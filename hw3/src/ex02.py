@@ -60,9 +60,7 @@ def main():
     residues = np.column_stack((residue_bp1, residue_bp2))
     
     fig, disp = plt.subplots()
-    disp.set_title('Multiple Samples with Different sizes')
-    disp.boxplot(residues, vert=False)
-    disp.set_axisbelow(True)
+    disp.boxplot(residues, vert=False, patch_artist=True)
     disp.set_yticklabels(['with regularization','without regularization'])
     disp.set_title('Comparison of residues in the presence and absence of regularization')
     plt.show()
