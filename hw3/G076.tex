@@ -48,11 +48,11 @@
     \vspace{-4.5em}
     \section{Pen and Paper}
     \begin{questions}
-        \item Let $b^{[l]}$, $net^{[l]}$ and $a^{[l]} = \phi(net^{[l]})$ denote the vector of biases, net values and activations of the $l$-th layer, respectively (with $\phi_i(net^{[l]}) = \tanh(net_i^{[l]})$ being the activation function). Let $W^{[l]} = [w_{ij}]$ be the matrix of weights $w_{ij}$ that connect the $j$-th activation of layer $l-1$ to the $i$-th net of layer $l$.
+        \item Let $b^{[l]}$, $net^{[l]}$ and $a^{[l]} = \phi(net^{[l]})$ denote the vector of biases, net values and activations of the $l$-th layer, respectively (where $\phi$ is the activation function such that $\phi_i(net^{[l]}) = \tanh(net_i^{[l]})$). Let $W^{[l]} = [w_{ij}]$ be the matrix of weights $w_{ij}$ that connect the $j$-th activation of layer $l-1$ to the $i$-th net of layer $l$.
         \begin{itemize}
             \item \textbf{Forward Propagation}
             \vspace{0.4em} \\
-            Given that $a^{[l]} = \phi(net^{[l]}) = \phi(W^{[l]}a^{[l-1]} + b^{[l]})$ ($i \in \{1, 2, 3\}$), considering that $a^{[0]} = \mathbf{x}$:
+            Given that $a^{[l]} = \phi(net^{[l]}) = \phi(W^{[l]}a^{[l-1]} + b^{[l]})$ (for $i \in \{1, 2, 3\}$) and considering that $a^{[0]} = \mathbf{x}$:
             \begin{align*}
                 a^{[1]} &= \phi(W^{[1]}a^{[0]} + b^{[1]}) = \phi\left(
                 \begin{bmatrix}
@@ -136,7 +136,7 @@
             \end{align*}
 
             \item \textbf{Backward propagation} \\
-            Consider the squared error loss $E = \frac{1}{2}\sum_{i = 1}^{2} (\mathbf{z}_i - \mathbf{\hat{z}}_i)^2 = \frac{1}{2}\sum_{i = 1}^{2} \left(\mathbf{z}_i - a_i^{[3]}\right)^2 =  \frac{1}{2}\| \mathbf{z} - a^{[3]}\|^2$ and define $\delta^{[l]} = \nabla_{net^{[l]}} E$. By the chain rule of derivation, we have, for layer $l \in \{1, 2\}$, with $n_l$ denoting the number of units in layer $l$:
+            Consider the squared error loss $E = \frac{1}{2}\sum_{i = 1}^{2} (z_i - \hat{z}_i)^2 = \frac{1}{2}\sum_{i = 1}^{2} \left(z_i - a_i^{[3]}\right)^2 =  \frac{1}{2}\| \mathbf{z} - a^{[3]}\|^2$ and define $\delta^{[l]} = \nabla_{net^{[l]}} E$. By the chain rule of derivation, we have, for layer $l \in \{1, 2\}$:
             \begin{align}
                 \delta^{[l]}& = \nabla_{net^{[l]}} E = \nabla_{net^{[l]}} a^{[l]} \nabla_{a^{[l]}} net^{[l+1]} \nabla_{net^{[l+1]}} E  \nonumber \\
                 &= \text{diag}(\tanh'(net^{[l]}_1), ..., \tanh'(net^{[l]}_{n_l}))(W^{[l + 1]})^T\delta^{[l + 1]} \nonumber \\
@@ -145,13 +145,14 @@
                     \tanh'(net^{[l]}_1) & \cdots & \tanh'(net^{[l]}_{n_l})
                 \end{bmatrix}^T \circ \left((W^{[l + 1]})^T\delta^{[l + 1]}\right) \nonumber \\
                 &= \begin{bmatrix}
-                    1 - \tanh^2(net^{[l]}_1) & \cdots &  1 - \tanh^2(net^{[l])}_{n_l}
+                    1 - \tanh^2(net^{[l]}_1) & \cdots &  1 - 1 - \tanh^2(net^{[l]}_{n_l})
                 \end{bmatrix}^T \circ \left((W^{[l + 1]})^T\delta^{[l + 1]}\right) \nonumber \\
                 &= \begin{bmatrix}
                     1 - (a^{[l]}_1)^2 & \cdots &  1 - (a^{[l]}_{n_l})^2
                 \end{bmatrix}^T \circ \left((W^{[l + 1]})^T\delta^{[l + 1]}\right) \label{eq:1}
             \end{align}
-            where in the two last steps the equalities $\tanh'(x) = 1 - \tanh^2(x)$ and $a^{[l]}_i = \tanh(net^{[l]}_i)$ were used. For the output layer ($l = 3$), using the equality $\nabla_x \left(\frac{1}{2}\|x\|^2\right) = x$ to compute $\nabla_{a^{[3]}}{E}$, we have:
+            where $n_l$ denotes the number of units in layer $l$ and in the two last steps the equalities $\tanh'(x) = 1 - \tanh^2(x)$ and $a^{[l]}_i = \tanh(net^{[l]}_i)$ were used. For the output layer ($l = 3$), using the equality $\nabla_x \left(\frac{1}{2}\|x\|^2\right) = x$ to compute $\nabla_{a^{[3]}}{E}$, we have:
+            \vspace{-0.5em}
             \begin{equation}
                 \delta^{[3]} = \nabla_{net^{[3]}}{a^{[3]}} \nabla_{a^{[3]}}{E} = 
                 \begin{bmatrix}
@@ -160,6 +161,7 @@
                 \label{eq:2}
             \end{equation}
             Computing the deltas:
+            \vspace{-0.68em}
             \begin{align*}
                 \delta^{[3]} = 
                 \begin{bmatrix}
@@ -186,16 +188,45 @@
                     0.0
                 \end{bmatrix}
             \end{align*} 
-            since $W^{[3]}$ is a null matrix and $\delta^{[2]}$ is a null vector (so $\delta_{[2]}$ and $\delta_{[2]}$ are null according to \eqref{eq:1}).
-            \item \textbf{Parameter update} \\
-            To perform gradient descent on the weights and biases, we calculate the gradient of the error with respect to these parameters ($l \in \{1, 2, 3\}$):
+            since $W^{[3]}$ is a null matrix and $\delta^{[2]}$ is a null vector (so $\delta^{[2]}$ and $\delta^{[2]}$ are null according to \eqref{eq:1}). \medskip
+            \item \textbf{Parameter update} \\[0.4em]
+            To perform gradient descent on the weights and biases, we calculate the gradient of the error with respect to these parameters (for $l \in \{1, 2, 3\}$):
             \begin{equation}
                 \frac{\partial E}{\partial w_{ij}^{[l]}} = \frac{\partial E}{\partial net_{i}^{[l]}} \frac{\partial net_i^{[l]}}{\partial w_{ij}^{[l]}} = \delta_i^{[l]} a_j^{[l - 1]} \Rightarrow \nabla_{W^{[l]}} E = \delta^{[l]} (a^{[l - 1]})^{T} \label{eq:3}
             \end{equation}
             \begin{equation}
                 \nabla_{b^{[l]}} E = \nabla_{b^{[l]}} net^{[l] }  \nabla_{net^{[l]}} E = \mathbb{I}^{n_l \times n_l} \delta^{[l]} = \delta^{[l]} \label{eq:4}
             \end{equation}
-            since for $x, y \in \mathbb{R}^n$, we have that $xy^T = [x_i y_j]$. Thus, setting the learning rate  $\eta$ to 0.1:
+            since for $x, y \in \mathbb{R}^n$, we have that $xy^T = [x_i y_j]$. Noting that deltas in layers 1 and 2 are zero valued vectors, we conclude that the gradients with respects to parameters in these layers are also zero valued (according to \eqref{eq:3} and \eqref{eq:4}), and so they don't change:
+            \begin{equation*}
+                \begin{split}
+                    (W^{[1]})^{\text{new}} &= (W^{[1]})^{\text{old}} = 
+                    \begin{bmatrix}
+                        1.0 & 1.0 & 1.0 & 1.0 & 1.0  \\
+                        0.0 & 0.0 & 0.0 & 0.0 & 0.0  \\
+                        1.0 & 1.0 & 1.0 & 1.0 & 1.0  \\
+                    \end{bmatrix} \\
+                    (W^{[2]})^{\text{new}} &= (W^{[2]})^{\text{old}} = 
+                    \begin{bmatrix}
+                        1.0 & 1.0 & 1.0  \\
+                        1.0 & 1.0 & 1.0  \\
+                    \end{bmatrix}
+                \end{split} \quad
+                \begin{split}
+                    (b^{[1]})^{\text{new}} &= (b^{[1]})^{\text{old}} = 
+                    \begin{bmatrix}
+                        1.0  \\
+                        1.0  \\
+                        1.0  \\
+                    \end{bmatrix} \\
+                    (b^{[2]})^{\text{new}} &= (b^{[2]})^{\text{old}} = 
+                    \begin{bmatrix}
+                        1.0  \\
+                        1.0  \\
+                    \end{bmatrix}
+                \end{split}
+            \end{equation*}
+            And, setting $\eta = 0.1$, for the output layer, we have:
             \begin{align*}
                 \nabla_{W^{[3]}} E &= 
                 \begin{bmatrix}
@@ -226,39 +257,10 @@
                     -0.1  \\
                 \end{bmatrix}
             \end{align*}
-            As deltas in layers 1 and 2 are zero valued vectors, the error gradient with respect to the weights and biases of these layers is also zero valued, acordding to \eqref{eq:3} and \eqref{eq:4}. Thus, these parameters don't change:
-            \begin{equation*}
-                \begin{split}
-                    (W^{[2]})^{\text{new}} &= (W^{[2]})^{\text{old}} = 
-                    \begin{bmatrix}
-                        1.0 & 1.0 & 1.0  \\
-                        1.0 & 1.0 & 1.0  \\
-                    \end{bmatrix}  \\
-                    (W^{[1]})^{\text{new}} &= (W^{[1]})^{\text{old}} = 
-                    \begin{bmatrix}
-                        1.0 & 1.0 & 1.0 & 1.0 & 1.0  \\
-                        0.0 & 0.0 & 0.0 & 0.0 & 0.0  \\
-                        1.0 & 1.0 & 1.0 & 1.0 & 1.0  \\
-                    \end{bmatrix}
-                \end{split} \quad
-                \begin{split}
-                    (b^{[2]})^{\text{new}} &= (b^{[2]})^{\text{old}} = 
-                    \begin{bmatrix}
-                        1.0  \\
-                        1.0  \\
-                    \end{bmatrix} \\
-                    (b^{[1]})^{\text{new}} &= (b^{[1]})^{\text{old}} = 
-                    \begin{bmatrix}
-                        1.0  \\
-                        1.0  \\
-                        1.0  \\
-                    \end{bmatrix}
-                \end{split}
-            \end{equation*}
         \end{itemize}
-        \item { \; } 
+        \item {\quad }\\[-2em] 
             \begin{itemize}
-                \item \textbf{Forward Propagation} \\
+                \item \textbf{Forward Propagation} \\[0.4em]
                 The only change in this stage occurs in the activation function in the last layer, which is now softmax:
                 \begin{equation*}
                     a^{[3]} = \text{softmax}(net^{[3]}) = \sigma(net^{[3]}) = \left(\frac{e^{net^{[3]}_1}}{\sum_{j = 1}^{2}e^{net^{[3]}_j}},\frac{e^{net^{[3]}_2}}{\sum_{j = 1}^{2}e^{net^{[3]}_j}}\right)
@@ -286,7 +288,7 @@
                         0.5  \\
                     \end{bmatrix}
                 \end{align*}     
-                \item \textbf{Backward propagation} \\
+                \item \textbf{Backward propagation} \\[0.4em]
                 With the change in the output layer activation function, we only need to re-compute $\delta^{[3]}$. Given the cross entropy loss $E = -\sum_{k = 1}^{2} z_k \log(a^{[3]}_k)$ and the fact that:
                 \begin{equation*}
                 \frac{\partial \sigma_j(\mathbf{x})}{\partial x_i} = 
@@ -295,7 +297,7 @@
                         \sigma_i(\mathbf{x}) ( 1 - \sigma_i(\mathbf{x})), & $i = j$
                     \end{cases*}
                 \end{equation*}
-                we have
+                we have:
                 \begin{equation*}
                     \frac{\partial E}{\partial net_i^{[3]}} = 
                     \sum_{k = 1}^{2} \frac{\partial E}{\partial a_k^{[3]}} \frac{\partial a_k^{[3]}}{\partial net_i^{[3]}} =
@@ -328,9 +330,38 @@
                         0.0
                     \end{bmatrix}
                 \end{align*} 
-                where we shorten the computation of $\delta^{[1]}$ and $\delta^{[2]}$ following the same arguments as the previous question.
+                where we shorten the computation of $\delta^{[1]}$ and $\delta^{[2]}$ following the same arguments used in the previous question.
 
-                \item \textbf{Parameter update} \\
+                \item \textbf{Parameter update} \\[0.4em]
+                Using the same argument as before, the following parameters don't register changes:
+                \begin{equation*}
+                    \begin{split}
+                        (W^{[1]})^{\text{new}} &= (W^{[1]})^{\text{old}} = 
+                        \begin{bmatrix}
+                            1.0 & 1.0 & 1.0 & 1.0 & 1.0  \\
+                            0.0 & 0.0 & 0.0 & 0.0 & 0.0  \\
+                            1.0 & 1.0 & 1.0 & 1.0 & 1.0  \\
+                        \end{bmatrix} \\
+                        (W^{[2]})^{\text{new}} &= (W^{[2]})^{\text{old}} = 
+                        \begin{bmatrix}
+                            1.0 & 1.0 & 1.0  \\
+                            1.0 & 1.0 & 1.0  \\
+                        \end{bmatrix} 
+                    \end{split} \quad
+                    \begin{split}
+                        (b^{[1]})^{\text{new}} &= (b^{[1]})^{\text{old}} = 
+                        \begin{bmatrix}
+                            1.0  \\
+                            1.0  \\
+                            1.0  \\
+                        \end{bmatrix} \\
+                        (b^{[2]})^{\text{new}} &= (b^{[2]})^{\text{old}} = 
+                        \begin{bmatrix}
+                            1.0  \\
+                            1.0  \\
+                        \end{bmatrix}
+                    \end{split}
+                \end{equation*}
                 According to \eqref{eq:3} and \eqref{eq:4}, for a learning rate of $\eta = 0.1$, we have:
                 \begin{align*}
                     \nabla_{W^{[3]}} E &= 
@@ -362,35 +393,6 @@
                          -0.05  \
                     \end{bmatrix}
                 \end{align*}
-                Using the same argument as before, the following parameters don't register changes:
-                \begin{equation*}
-                    \begin{split}
-                        (W^{[2]})^{\text{new}} &= (W^{[2]})^{\text{old}} = 
-                        \begin{bmatrix}
-                            1.0 & 1.0 & 1.0  \\
-                            1.0 & 1.0 & 1.0  \\
-                        \end{bmatrix}  \\
-                        (W^{[1]})^{\text{new}} &= (W^{[1]})^{\text{old}} = 
-                        \begin{bmatrix}
-                            1.0 & 1.0 & 1.0 & 1.0 & 1.0  \\
-                            0.0 & 0.0 & 0.0 & 0.0 & 0.0  \\
-                            1.0 & 1.0 & 1.0 & 1.0 & 1.0  \\
-                        \end{bmatrix}
-                    \end{split} \quad
-                    \begin{split}
-                        (b^{[2]})^{\text{new}} &= (b^{[2]})^{\text{old}} = 
-                        \begin{bmatrix}
-                            1.0  \\
-                            1.0  \\
-                        \end{bmatrix} \\
-                        (b^{[1]})^{\text{new}} &= (b^{[1]})^{\text{old}} = 
-                        \begin{bmatrix}
-                            1.0  \\
-                            1.0  \\
-                            1.0  \\
-                        \end{bmatrix}
-                    \end{split}
-                \end{equation*}
             \end{itemize}
     \end{questions}
 
@@ -398,7 +400,6 @@
     \begin{questions}
         \setcounter{question}{1}
         \item \quad
-        \vspace{-1.3em}
         \begin{figure}[H]
             \centering
             \begin{minipage}[b]{0.49\textwidth}
@@ -410,11 +411,11 @@
               %\caption{Confusion Matrix with early stopping}
             \end{minipage}
         \end{figure}
-        \vspace{-1em}
-        The confusion matrices above reveal a decrease in accuracy when there is early stopping, which may be due to:
+        \pagebreak
+        The confusion matrices above reveal a decrease in accuracy when there is early stopping (there are fewer true positives and true negatives). This behaviour may be due to:
         \vspace{-0.5em}
         \begin{itemize}
-            \item the presence of overfitting to the validation sets across dataset folds, since early stopping aims to maximize accuracy over these subsets.
+            \item the presence of overfitting to the validation sets across dataset folds, since early stopping aims to maximize accuracy over these subsets;
             \item the scarcity of instances that cover all possible values for each feature, which is exacerbated by creating yet another subset of the dataset in each fold. Consequently, some parameters may be left undertrained, leading to more misclassifications.
         \end{itemize}
         \item \quad
@@ -423,14 +424,13 @@
             \centering
               \includegraphics[width=\textwidth]{residue_boxplot.pdf}
         \end{figure}
-        In order to reduce the observed error, one can:
+        In order to reduce the observed error, we can resort to strategies that use $k$-fold cross-validation to try out and select the best values for the following network hyperparameters:
         \begin{itemize}
-            \item try different types of regularization (e.g., $l_1$ and $l_2$) so as to reduce both variability and median residue absolute value (following the plot above);
-            \item tune the learning rate $\eta$ in hopes of escaping a possible local error minimum;
-            \item experiment other optimization methods, such as Stochastic Gradient Descent, with or without momentum;
-            \item try out different architectures, increasing both the number of layers and/or number of units per layer.
-        \end{itemize}
-          
+            \item regularization penalty constant $\alpha$, given the decrease in residue variability and median absolute value shown above;
+            \item learning rate $\eta$ (absolute value and/or decay rate), so as to avoid error function local minima (note that in the presence of regularization, the error function is more likely to assess performance over the whole population);
+            \item random seeds, which determine initial weights and biases, and, consequently, the quality of the found error function minimum;
+            \item variance of zero-mean Gaussian noise added to the weights (for the purpose of reducing overfitting).
+        \end{itemize}      
     \end{questions}
 
     \pagebreak
