@@ -11,6 +11,7 @@
 \usepackage{minted}
 \usepackage{inconsolata}
 \usepackage{tikz}
+\usepackage[font={small}]{caption}
 
 \graphicspath{ {./src/output} }
 
@@ -182,7 +183,8 @@
                 \begin{bmatrix}
                     0.0  \\
                     0.0  \\
-                \end{bmatrix} \\
+                    0.0
+                \end{bmatrix}
             \end{align*} 
             since $W^{[3]}$ is a null matrix and $\delta^{[2]}$ is a null vector (so $\delta_{[2]}$ and $\delta_{[2]}$ are null according to \eqref{eq:1}).
             \item \textbf{Parameter update} \\
@@ -323,7 +325,8 @@
                     \begin{bmatrix}
                         0.0  \\
                         0.0  \\
-                    \end{bmatrix} \\
+                        0.0
+                    \end{bmatrix}
                 \end{align*} 
                 where we shorten the computation of $\delta^{[1]}$ and $\delta^{[2]}$ following the same arguments as the previous question.
 
@@ -391,15 +394,43 @@
             \end{itemize}
     \end{questions}
 
-
-
-
-
-
     \section{Programming and critical analysis}
     \begin{questions}
-        \setcounter{question}{3}
-        \item Inserir aqui as respostas
+        \setcounter{question}{1}
+        \item \quad
+        \vspace{-1.3em}
+        \begin{figure}[H]
+            \centering
+            \begin{minipage}[b]{0.49\textwidth}
+              \includegraphics[width=\textwidth]{mlp_conf_matrix_False.pdf}
+              %\caption{Confusion Matrix without early stopping}
+            \end{minipage}
+            \begin{minipage}[b]{0.49\textwidth}
+              \includegraphics[width=\textwidth]{mlp_conf_matrix_True.pdf}
+              %\caption{Confusion Matrix with early stopping}
+            \end{minipage}
+        \end{figure}
+        \vspace{-1em}
+        The confusion matrices above reveal a decrease in accuracy when there is early stopping, which may be due to:
+        \vspace{-0.5em}
+        \begin{itemize}
+            \item the presence of overfitting to the validation sets across dataset folds, since early stopping aims to maximize accuracy over these subsets.
+            \item the scarcity of instances that cover all possible values for each feature, which is exacerbated by creating yet another subset of the dataset in each fold. Consequently, some parameters may be left undertrained, leading to more misclassifications.
+        \end{itemize}
+        \item \quad
+        \vspace{-0.45cm}
+        \begin{figure}[H]
+            \centering
+              \includegraphics[width=\textwidth]{residue_boxplot.pdf}
+        \end{figure}
+        In order to reduce the observed error, one can:
+        \begin{itemize}
+            \item try different types of regularization (e.g., $l_1$ and $l_2$) so as to reduce both variability and median residue absolute value (following the plot above);
+            \item tune the learning rate $\eta$ in hopes of escaping a possible local error minimum;
+            \item experiment other optimization methods, such as Stochastic Gradient Descent, with or without momentum;
+            \item try out different architectures, increasing both the number of layers and/or number of units per layer.
+        \end{itemize}
+          
     \end{questions}
 
     \pagebreak
