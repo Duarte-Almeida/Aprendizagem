@@ -30,11 +30,11 @@ def compute_ecr(labels, outputs, k):
     return (1/k) * (np.sum(aux))
 
 ### MAIN ### 
-data = load_data("D:\\apre_homeworks\\hw4\\data\\breast.w.arff")
+data = load_data("../data/breast.w.arff")
 inputs = data.iloc[:, :-1].to_numpy()
 outputs = data.iloc[:, [-1]].to_numpy().T.flatten()
-kmeans_2 = cluster.KMeans(n_clusters=2, random_state=76).fit(inputs)
-kmeans_3 = cluster.KMeans(n_clusters=3, random_state=76).fit(inputs)
+kmeans_2 = cluster.KMeans(n_clusters = 2, random_state = 76).fit(inputs)
+kmeans_3 = cluster.KMeans(n_clusters = 3, random_state = 76).fit(inputs)
 
 # 4) a.
 print(f"ECR k = 2: {compute_ecr(kmeans_2.labels_, outputs, 2)}")

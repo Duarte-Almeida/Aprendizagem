@@ -71,8 +71,10 @@ def plot_clusters(X, new_Mu, new_Sigma, new_pi):
     y = np.arange(-8, 8, 0.1)
     X, Y = np.meshgrid(x, y)
     
+    cmaps = ['viridis', 'plasma', 'inferno', 'magma', 'cividis']
     for k in range(0, pi.shape[0]):
-        ax.contour(X, Y, stats.multivariate_normal(mean = new_Mu[:, [k]].flatten(), cov = new_Sigma[k]).pdf(np.dstack((X, Y))), alpha = 0.5)
+        ax.contour(X, Y, stats.multivariate_normal(mean = new_Mu[:, [k]].flatten(), cov = new_Sigma[k]).pdf(np.dstack((X, Y))), \
+                                                   alpha = 0.5, cmap = cmaps[(2 * k) % len(cmaps)])
     
     fig.savefig("output/EM_clusters.pdf")
 
