@@ -117,7 +117,7 @@ def compute_silhouette(X, Gama):
 def main():
     Gama = expectation(X, Sigma, pi)
     new_Mu, new_Sigma, new_pi = maximization(X, Sigma, pi, Gama)
-    #plot_clusters(X, new_Mu, new_Sigma, new_pi)
+    plot_clusters(X, new_Mu, new_Sigma, new_pi)
     Gama = expectation(X, new_Sigma, new_pi)
     compute_silhouette(X, Gama)
 
