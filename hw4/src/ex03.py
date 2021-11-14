@@ -29,7 +29,7 @@ def main():
     plt.cla()
 
     plt.plot(dim_2, vc_dimension_MLP(dim_2), label = "$d_{\\mathrm{VC}}(\\mathrm{MLP})$")
-    plt.plot(dim_2, vc_dimension_Bayes(dim_2), label =  "$d_{\\mathrm{VC}}(\\mathrm{Bayesian Classifier})$")
+    plt.plot(dim_2, vc_dimension_Bayes(dim_2), label =  "$d_{\\mathrm{VC}}(\\mathrm{Bayesian \; Classifier})$")
     ax.set_xlabel("data dimensionality")
     ax.set_ylabel("VC dimension")
 

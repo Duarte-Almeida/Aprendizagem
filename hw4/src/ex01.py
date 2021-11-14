@@ -15,6 +15,14 @@ Sigma = np.array([[[1, 0], \
 
 pi = np.array([0.7, 0.3])
 
+def print_matrix(matrix):
+    for i in range(matrix.shape[0]):
+        str = ""
+        for j in range(matrix.shape[1]):
+            str += f" {round(matrix[i][j], 5)} &"
+        str = str[:-1] + "\\\\"
+        print(str)
+
 def expectation(X, Sigma, priors):
     print("Expectation\n\n")
     Gama = np.zeros((X.shape[0], priors.shape[0]))
@@ -26,12 +34,12 @@ def expectation(X, Sigma, priors):
             p_x_given_c = stats.multivariate_normal(mean = X[k].flatten(), cov = Sigma[k]).pdf(X[n])
             joint_probs[k] = p_x_given_c * priors[k]
             p_x += joint_probs[k]
-            print(f"p(c = {k + 1}) = {priors[k]}   p(x_{n + 1}|c = {k + 1}) = {p_x_given_c}  p(x_{n + 1}, c = {k + 1}) = {joint_probs[k]}")   
-        print(f"p(x = {n}) = {p_x}") 
+            print(f"p(c = {k + 1}) = {round(priors[k], 5)}   p(x_{n + 1}|c = {k + 1}) = {round(p_x_given_c, 5)}  p(x_{n + 1}, c = {k + 1}) = {round(joint_probs[k], 5)}")   
+        print(f"p(x = {n}) = {round(p_x, 5)}") 
         str=""
         for k in range(0, priors.shape[0]):
             Gama[n][k] = joint_probs[k] / p_x
-            str += f"p(c = {k + 1}|x_{n+1}) = {Gama[n][k]}   "
+            str += f"p(c = {k + 1}|x_{n+1}) = {round(Gama[n][k], 5)}   "
         print(str + "\n")
     
     return Gama
@@ -46,7 +54,8 @@ def maximization(X, Sigma, priors, Gama):
     new_Mu = np.matmul(X.T, normalized)
 
     for k in range(0, new_Mu.shape[1]):
-        print(f"mu_{k + 1} = {new_Mu[:, [k]].flatten()}")
+        print(f"mu_{k + 1} =")
+        print_matrix(new_Mu[:, [k]])
 
     normalized_sqrt = np.apply_along_axis(lambda x: np.sqrt(x) / np.sqrt(np.sum(x)), 0, Gama)
     new_Sigma = np.zeros((priors.shape[0], X.shape[1], X.shape[1]))
@@ -54,12 +63,13 @@ def maximization(X, Sigma, priors, Gama):
     for k in range(0, priors.shape[0]):
         aux = normalized_sqrt[:, [k]].T * (X.T - new_Mu[:, [k]])
         new_Sigma[k] = np.matmul(aux, aux.T)
-        print(f"Sigma_{k + 1} = \n {new_Sigma[k]}")
+        print(f"Sigma_{k + 1} =")
+        print_matrix(new_Sigma[k])
 
     new_pi = np.apply_along_axis(lambda x: np.sum(x) / x.shape[0], 0, Gama)
     
     for k in range(0, priors.shape[0]):
-        print(f"pi_{k + 1} = {new_pi[k]}")
+        print(f"pi_{k + 1} = {round(new_pi[k], 5)}")
 
     return new_Mu, new_Sigma, new_pi
 
@@ -92,7 +102,7 @@ def compute_silhouette(X, Gama):
         print(f"For cluster c_{c + 1}: \n")
         if len(cluster_dict[c]) == 1:
             silhouettes[c] = 1                                  # TODO: send mail
-            print(f"Silhouette(c_{c + 1}): {silhouettes[c]}\n")
+            print(f"Silhouette(c_{c + 1}): {round(silhouettes[c], 5)}\n")
             continue
         intra_cluster_silhouettes = []
         for n in cluster_dict[c]:
@@ -102,25 +112,24 @@ def compute_silhouette(X, Gama):
                 cluster_distances = []
                 for m in (x for x in cluster_dict[index] if x != n):
                     cluster_distances.append(np.linalg.norm(X[n] - X[m]))
-                    print(f"||x_{n + 1} - x_{m + 1}|| = {cluster_distances[-1]}")
+                    print(f"||x_{n + 1} - x_{m + 1}|| = {round(cluster_distances[-1], 5)}")
                 distances[index] = np.mean(np.array(cluster_distances))
-                print(f"Mean distance to cluster {index + 1}: {distances[index]}\n")
+                print(f"Mean distance to cluster {index + 1}: {round(distances[index], 5)}\n")
 
             a = distances[cluster[n]]
             b = np.amin(np.delete(distances, cluster[n]))
             intra_cluster_silhouettes.append(1.0 - (a / b))
-            print(f"Silhouette(x_{n + 1}): {intra_cluster_silhouettes[-1]}\n")
+            print(f"Silhouette(x_{n + 1}): {round(intra_cluster_silhouettes[-1], 5)}\n")
         silhouettes[c] = np.mean(np.array(intra_cluster_silhouettes))
-        print(f"Silhouette(c_{c + 1}): {silhouettes[c]}\n")
+        print(f"Silhouette(c_{c + 1}): {round(silhouettes[c], 5)}\n")
 
-    print(f"Cluster silhouette: {np.mean(silhouettes)}")
+    print(f"Cluster silhouette: {round(np.mean(silhouettes), 5)}")
     
 
 def main():
     Gama = expectation(X, Sigma, pi)
     new_Mu, new_Sigma, new_pi = maximization(X, Sigma, pi, Gama)
     plot_clusters(X, new_Mu, new_Sigma, new_pi)
-    Gama = expectation(X, new_Sigma, new_pi)
     compute_silhouette(X, Gama)
 
 
