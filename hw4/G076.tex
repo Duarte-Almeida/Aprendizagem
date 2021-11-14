@@ -48,7 +48,7 @@
     \vspace{-4.5em}
     \section{Pen and Paper}
     \begin{questions}
-        \item Let $\textbf{c}$ be a 2-dimensional random vector for which $c_k \in \{0,1\}$ is an indicator of cluster $k$ ($k \in \{1, 2\}$). Let $\pi_k = p(c_k = 1)$ and let $\gamma(c_{nk}) = p(c_k = 1|\textbf{x}^{(n)})$.
+        \item Let $\textbf{c}$ be a 2-dimensional random vector for which $c_k \in \{0,1\}$ is an indicator of cluster $k$ ($k \in \{1, 2\}$ and $\sum c_k = 1$). Let $\pi_k = p(c_k = 1)$ and let $\gamma(c_{nk}) = p(c_k = 1|\textbf{x}^{(n)})$.
         \begin{itemize}
             \item \textbf{E-step} \\[0.4em]
             In this step, we assign each instance $\textbf{x}^{(n)}$ to the cluster $c_k$ that yields the largest posterior $\gamma(c_{nk})$. Given that $\textbf{x}^{(n)}|c_k = 1 \sim \mathcal{N}(\mu_k, \Sigma_k)$, by Bayes rule, we have:
@@ -59,23 +59,23 @@
             \begin{itemize}
                 \item For $\textbf{x}^{(1)}$:
                 \begin{flalign*}
-                    &\gamma(c_{11}) = \frac{\pi_1\mathcal{N}(\textbf{x}^{(1)}|\mu_1, \Sigma_1)}{\sum_{l = 1}^{2}\pi_l\mathcal{N}(\textbf{x}^{(1)}|\mu_l, \Sigma_l)} = \frac{0.7 \cdot 0.15915}{0.7 \cdot 0.15915 + 0.3 \cdot 0.0} = \frac{0.11141}{0.11141} = 1.0 \\
+                    &\gamma(c_{11}) = \frac{\pi_1\mathcal{N}(\textbf{x}^{(1)}|\mu_1, \Sigma_1)}{\sum_{l = 1}^{2}\pi_l\mathcal{N}(\textbf{x}^{(1)}|\mu_l, \Sigma_l)} = \frac{0.7 \cdot 0.1591549}{0.7 \cdot 0.1591549 + 0.3 \cdot 0.0} = \frac{0.11141}{0.11141} = 1.0 \\
                     &\gamma(c_{12}) = 1 - \gamma(c_{11}) = 0.0
                 \end{flalign*}
                 \item For $\textbf{x}^{(2)}$:
                 \begin{flalign*}
-                    \gamma(c_{21}) &= \frac{0.7 \cdot 0.0}{0.7 \cdot 0.0 +  0.3 \cdot 0.07958} = 0.0 \quad 
+                    \gamma(c_{21}) &= \frac{0.7 \cdot 0.0}{0.7 \cdot 0.0 +  0.3 \cdot 0.0795775} = 0.0 \quad 
                     \gamma(c_{22}) = 1 - \gamma(c_{21}) = 1.0
                 \end{flalign*}
                 \item For $\textbf{x}^{(3)}$:
                 \begin{flalign*}
                     \hspace*{-2.1em}
-                    \gamma(c_{31}) = \frac{0.7 \cdot 0.00024}{0.7 \cdot 0.00024 +  0.3 \cdot 0.00001} = 0.98271 \quad  
+                    \gamma(c_{31}) = \frac{0.7 \cdot 0.0002393}{0.7 \cdot 0.0002393 +  0.3 \cdot 0.0000098} = 0.98271 \quad  
                     \gamma(c_{32}) = 1 - \gamma(c_{31}) = 0.01729
                 \end{flalign*}
                 \item For $\textbf{x}^{(4)}$:
                 \begin{flalign*}
-                    \gamma(c_{41}) = \frac{0.7 \cdot 0.00001}{0.7 \cdot 0.00001 +  0.3 \cdot 0.0} = 0.85698 \quad  
+                    \gamma(c_{41}) = \frac{0.7 \cdot 0.0000072}{0.7 \cdot 0.0000072 +  0.3 \cdot 0.0000028} = 0.85698 \quad  
                     \gamma(c_{42}) = 1 - \gamma(c_{41}) = 0.14302  \\
                 \end{flalign*}
             \end{itemize}
@@ -135,7 +135,7 @@
             \begin{align*}
                 \Sigma_1 &= \frac{1.0
                 \begin{bmatrix}
-                    2.0 & 8.0 \\
+                    4.0 & 8.0 \\
                     8.0 & 16.0 \\
                 \end{bmatrix} + 0.0
                 \begin{bmatrix}
@@ -157,7 +157,7 @@
                 \end{bmatrix}\\
                 \Sigma_2 &= \frac{0.0
                 \begin{bmatrix}
-                    2.0 & 8.0 \\
+                    4.0 & 8.0 \\
                     8.0 & 16.0 \\
                 \end{bmatrix} + 1.0
                 \begin{bmatrix}
@@ -178,7 +178,7 @@
                     2.10624 & 2.16924 \\
                 \end{bmatrix}
             \end{align*}
-            Finally, the new prior probabilities, can now be written as:
+            Finally, the new prior probabilities can now be written as:
             \[
                 \pi_k = \frac{\sum_{n = 1}^{4}\gamma(c_{nk})}{4}
             \] 
@@ -196,7 +196,7 @@
         \item First, we compute the silhouette of cluster $c_1$:
             \begin{align*}
                 s(\textbf{x}^{(1)}) &= 1 - \frac{a(\textbf{x}^{(1)})}{b(\textbf{x}^{(1)})} = 1 - \frac{\frac{\|\textbf{x}^{(1)} - \textbf{x}^{(3)}\|_2 + \|\textbf{x}^{(1)} - \textbf{x}^{(4)}\|_2}{2}}{\|\textbf{x}^{(1)} - \textbf{x}^{(2)}\|_2} = 1 - \frac{\frac{ 3.60555 + 4.47214}{2}}{8.544} = 0.52729 \\
-                s(\textbf{x}^{(3)}) &= 1 - \frac{a(\textbf{x}^{(3)})}{b(\textbf{x}^{(3)})} = 1 - \frac{\frac{\|\textbf{x}^{(3)} - \textbf{x}^{(1)}\|_2 + \|\textbf{x}^{(3)} - \textbf{x}^{(4)}\|_2}{2}}{\|\textbf{x}^{(3)} - \textbf{x}^{(2)}\|_2} = 1 - \frac{\frac{ 3.60555 + 5.38516}{2}}{4.49536} = 0.25077 \\
+                s(\textbf{x}^{(3)}) &= 1 - \frac{a(\textbf{x}^{(3)})}{b(\textbf{x}^{(3)})} = 1 - \frac{\frac{\|\textbf{x}^{(3)} - \textbf{x}^{(1)}\|_2 + \|\textbf{x}^{(3)} - \textbf{x}^{(4)}\|_2}{2}}{\|\textbf{x}^{(3)} - \textbf{x}^{(2)}\|_2} = 1 - \frac{\frac{ 3.60555 + 5.38516}{2}}{6.0} = 0.25077 \\
                 s(\textbf{x}^{(4)}) &= 1 - \frac{a(\textbf{x}^{(4)})}{b(\textbf{x}^{(4)})} = 1 - \frac{\frac{\|\textbf{x}^{(4)} - \textbf{x}^{(1)}\|_2 + \|\textbf{x}^{(4)} - \textbf{x}^{(3)}\|_2}{2}}{\|\textbf{x}^{(4)} - \textbf{x}^{(2)}\|_2} = 1 - \frac{\frac{4.47214 + 5.38516}{2}}{6.40312} = 0.23027 \\
             \end{align*}
             \vspace{-2.2em}
@@ -223,7 +223,7 @@
                 \vspace{0.5em}
                 Consequently, the total number of parameters is $3d^2 + 2d + 3d + 2 = 3d^2 + 5d + 2$. Given that the number of parameters is a reasonable estimate of the VC dimension of the model, for $d = 5$, we have an approximation of the VC dimension of the MLP of $3 \cdot 5^2 + 5 \cdot 5 + 2 = 102.$ 
                 \vspace{0.8em}
-                \item For input data of dimensionality $d$, we know that $d_{\text{VC}} \le 3^d$, as $3^d$ is precisely the size of the input space (there are $d$ features with 3 possible values). Hence, it is impossible for the decision tree to shatter a greater number of points than $3^d$. On another hand, we note that any set of size $3^d$ can be shattered by the decision tree; for that purpose, given any dichotomy, it suffices to consider a tree with $d + 1$ levels with a single non-leaf node which is associated with a point in the set. In that node, we test equality w.r.t. that point, and we classify the example with the label of the corresponding point or continue down the tree accordingly. Thus, $d_{\text{VC}} \ge 3^d$, and so $d_{\text{VC}} = 3^d = 3^5 = 243$.
+                \item For input data of dimensionality $d$, we know that $d_{\text{VC}} \le 3^d$, as $3^d$ is precisely the size of the input space (there are $d$ features with 3 possible values). Hence, it is impossible for the decision tree to shatter a number of points greater than $3^d$. On another hand, we note that any set of size $3^d$ can be shattered by a decision tree; for that purpose, given any dichotomy, it suffices to consider a tree with $d + 1$ levels with a single non-leaf node which is associated with a point in the set. In that node, we test equality w.r.t. that point, and we classify the example with the label of the corresponding point or continue down the tree accordingly. Thus, $d_{\text{VC}} \ge 3^d$, and so $d_{\text{VC}} = 3^d = 3^5 = 243$.
                 \vspace{0.8em}
                 \item We again estimate VC dimension based on the number of parameters of the model. Given a point $\textbf{x} \in \mathbb{R}^{d}$ and a binary output variable $z$, the Bayesian Classifier estimates the following probability:
                 \vspace{0.4em}
@@ -247,7 +247,7 @@
                 \centering
                 \includegraphics[scale = 0.75]{vc_4_b.pdf}
             \end{figure}
-            We estimate that $d_{\text{VC}}(\text{MLP}) > d_{\text{VC}}(\text{Bayesian Classifier})$, with these values only diverging for $m > 200$ (albeit by not more than a multiplying constant, given their similar asymptotic behaviour).
+            We estimate that $d_{\text{VC}}(\text{MLP}) > d_{\text{VC}}(\text{Bayesian Classifier})$, with these values only diverging for $m \ge 300$ (albeit by not more than a multiplying constant, given their similar asymptotic behaviour).
         \end{parts}
     \end{questions}
     \section{Programming and critical analysis}

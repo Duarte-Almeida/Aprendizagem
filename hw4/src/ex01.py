@@ -34,8 +34,8 @@ def expectation(X, Sigma, priors):
             p_x_given_c = stats.multivariate_normal(mean = X[k].flatten(), cov = Sigma[k]).pdf(X[n])
             joint_probs[k] = p_x_given_c * priors[k]
             p_x += joint_probs[k]
-            print(f"p(c = {k + 1}) = {round(priors[k], 5)}   p(x_{n + 1}|c = {k + 1}) = {round(p_x_given_c, 5)}  p(x_{n + 1}, c = {k + 1}) = {round(joint_probs[k], 5)}")   
-        print(f"p(x = {n}) = {round(p_x, 5)}") 
+            print(f"p(c = {k + 1}) = {round(priors[k], 5)}   p(x_{n + 1}|c = {k + 1}) = {round(p_x_given_c, 7)}  p(x_{n + 1}, c = {k + 1}) = {round(joint_probs[k], 5)}")   
+        print(f"p(x = {n}) = {round(p_x, 7)}") 
         str=""
         for k in range(0, priors.shape[0]):
             Gama[n][k] = joint_probs[k] / p_x
