@@ -15,12 +15,9 @@
 
 \graphicspath{ {./src/output} }
 
-
 \setlength{\droptitle}{-5em}   
 
-
 \renewcommand{\questionlabel}{\textbf{~\thequestion)}}
-%\renewcommand{\thepartno}{\roman{partno}}
 \renewcommand{\subpartlabel}{\thesubpart)}
 \DeclarePairedDelimiterX{\norm}[1]{\lVert}{\rVert}{#1}
 
@@ -239,7 +236,7 @@
                 \centering
                 \includegraphics[scale = 0.75]{vc_4_a.pdf}
             \end{figure}
-            In comparison the other models, the VC dimension of the decision tree starts to explode exponentially for data dimensionalities as low as 12 (thus requiring exponentially larger datasets to mitigate overfitting risks).
+            In comparison to the other models, the VC dimension of the decision tree starts to explode exponentially for data dimensionalities as low as 12 (thus requiring exponentially larger datasets to mitigate overfitting risks).
             \vspace{1em}
             \item \quad 
             \vspace{-3.0em}
@@ -265,7 +262,7 @@
             \centering
             \includegraphics{3means.pdf}
         \end{figure}
-        \item Assuming that the selected features are able to correctly capture the structure of the dataset, the plot above shows that the clustering solution yields poor separation: the clusters are intertwined and there are instances with contiguous feature values that are assigned to different clusters. Furthermore, cohesion is also unsatisfactory: note the variance in cluster 1, which contains instances with feature values (4, 10) and (10, 2). This sub-optimal performance can be explained by the fact the dataset lacks the existence of circle-like concentrations of points that makes the application of $k$-means more suitable. 
+        \item Assuming that the selected features are able to correctly capture the structure of the dataset, the plot above shows that the clustering solution yields poor separation, given the existence of instances with contiguous feature values that are assigned to different clusters. Furthermore, cohesion is also unsatisfactory: note the variance in cluster 1, which contains instances with feature values (4, 10) and (10, 2). This sub-optimal performance can be explained by the fact that the dataset lacks circle-like concentrations of points that make the application of $k$-means suitable. Alternatively, the fact that $k$-means only considers Euclidean distances (and thus neglects feature importance) may make discerning cluster structures in this reduced input space not possible.
     \end{questions}
 
     \pagebreak

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.3)  14 NOV 2021 22:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.3)  14 NOV 2021 23:33
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -589,20 +589,20 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 ) (/Users/duartealmeida/Apre/homeworks/hw4/G076.aux)
 \openout1 = `G076.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
  (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count371
@@ -625,21 +625,21 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 41.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 41.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 <./src/output/logo_ist.jpeg, id=4, 301.125pt x 132.495pt>
 File: ./src/output/logo_ist.jpeg Graphic file (type jpg)
 <use ./src/output/logo_ist.jpeg>
-Package pdftex.def Info: ./src/output/logo_ist.jpeg  used on input line 46.
+Package pdftex.def Info: ./src/output/logo_ist.jpeg  used on input line 43.
 (pdftex.def)             Requested size: 105.39532pt x 46.37393pt.
 
-Overfull \hbox (56.90945pt too wide) detected at line 180
+Overfull \hbox (56.90945pt too wide) detected at line 177
 []
  []
 
@@ -649,18 +649,18 @@ Overfull \hbox (56.90945pt too wide) detected at line 180
 <./src/output/EM_clusters.pdf, id=21, 462.52798pt x 346.89601pt>
 File: ./src/output/EM_clusters.pdf Graphic file (type pdf)
 <use ./src/output/EM_clusters.pdf>
-Package pdftex.def Info: ./src/output/EM_clusters.pdf  used on input line 193.
+Package pdftex.def Info: ./src/output/EM_clusters.pdf  used on input line 190.
 (pdftex.def)             Requested size: 346.89513pt x 260.17136pt.
  [2 </Users/duartealmeida/Apre/homeworks/hw4/./src/output/EM_clusters.pdf>] [3]
 <./src/output/vc_4_a.pdf, id=45, 462.52798pt x 346.89601pt>
 File: ./src/output/vc_4_a.pdf Graphic file (type pdf)
 <use ./src/output/vc_4_a.pdf>
-Package pdftex.def Info: ./src/output/vc_4_a.pdf  used on input line 240.
+Package pdftex.def Info: ./src/output/vc_4_a.pdf  used on input line 237.
 (pdftex.def)             Requested size: 346.89513pt x 260.17136pt.
 <./src/output/vc_4_b.pdf, id=46, 462.52798pt x 346.89601pt>
 File: ./src/output/vc_4_b.pdf Graphic file (type pdf)
 <use ./src/output/vc_4_b.pdf>
-Package pdftex.def Info: ./src/output/vc_4_b.pdf  used on input line 248.
+Package pdftex.def Info: ./src/output/vc_4_b.pdf  used on input line 245.
 (pdftex.def)             Requested size: 346.89513pt x 260.17136pt.
  [4 </Users/duartealmeida/Apre/homeworks/hw4/./src/output/vc_4_a.pdf> </Users/duartealmeida/Apre/homeworks/hw4/./src/output/vc_4_b.pdf
 
@@ -669,7 +669,7 @@ pdfTeX warning: pdflatex (file /Users/duartealmeida/Apre/homeworks/hw4/./src/out
 <./src/output/3means.pdf, id=81, 462.52798pt x 346.89601pt>
 File: ./src/output/3means.pdf Graphic file (type pdf)
 <use ./src/output/3means.pdf>
-Package pdftex.def Info: ./src/output/3means.pdf  used on input line 266.
+Package pdftex.def Info: ./src/output/3means.pdf  used on input line 263.
 (pdftex.def)             Requested size: 462.52684pt x 346.89516pt.
  [5 </Users/duartealmeida/Apre/homeworks/hw4/./src/output/3means.pdf>] (/Users/duartealmeida/Apre/homeworks/hw4/_minted-G076/default-pyg-prefix.pygstyle) (/Users/duartealmeida/Apre/homeworks/hw4/_minted-G076/default.pygstyle) (/Users/duartealmeida/Apre/homeworks/hw4/_minted-G076/210F3516A121FDF39ACDFDB687B8878C043793C09466171870AB002126D88238.pygtex
 LaTeX Font Info:    Trying to load font information for OT1+zi4 on input line 1.
@@ -707,9 +707,9 @@ Here is how much of TeX's memory you used:
  36410 multiletter control sequences out of 15000+600000
  412642 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,15n,116p,842b,610s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 113i,15n,116p,872b,610s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /Users/duartealmeida/Apre/homeworks/hw4/G076.pdf (7 pages, 328165 bytes).
+Output written on /Users/duartealmeida/Apre/homeworks/hw4/G076.pdf (7 pages, 328325 bytes).
 PDF statistics:
  164 PDF objects out of 1000 (max. 8388607)
  126 compressed objects within 2 object streams
