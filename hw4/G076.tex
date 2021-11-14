@@ -50,7 +50,7 @@
     \begin{questions}
         \item Let $\textbf{c}$ be a 2-dimensional random vector for which $c_k \in \{0,1\}$ is an indicator of cluster $k$ ($k \in \{1, 2\}$). Let $\pi_k = p(c_k = 1)$ and let $\gamma(c_{nk}) = p(c_k = 1|\textbf{x}^{(n)})$.
         \begin{itemize}
-            \item \textbf{E-step} \\
+            \item \textbf{E-step} \\[0.4em]
             In this step, we assign each instance $\textbf{x}^{(n)}$ to the cluster $c_k$ that yields the largest posterior $\gamma(c_{nk})$. Given that $\textbf{x}^{(n)}|c_k = 1 \sim \mathcal{N}(\mu_k, \Sigma_k)$, by Bayes rule, we have:
             \[
                 \gamma(c_{nk}) = p(c_k = 1|\textbf{x}^{(n)}) = \frac{p(c_k = 1)p(\textbf{x}^{(n)}|c_k = 1)}{\sum_{l = 1}^{2}p(c_l = 1)p(\textbf{x}^{(n)}|c_l = 1)} = \frac{\pi_k\mathcal{N}(\textbf{x}^{(n)}|\mu_k, \Sigma_k)}{\sum_{l = 1}^{2}\pi_l\mathcal{N}(\textbf{x}^{(n)}|\mu_l, \Sigma_l)}
@@ -79,7 +79,7 @@
                     \gamma(c_{42}) = 1 - \gamma(c_{41}) = 0.14302  \\
                 \end{flalign*}
             \end{itemize}
-            \item \textbf{M-step} \\
+            \item \textbf{M-step} \\[0.4em]
             We re-compute $\mu_k$, $\Sigma_k$ and $\pi_k$ ($k \in \{1, 2\})$ so as to increase the likelihood of the data. \\
             The new cluster centroids are given by: 
             \[
@@ -213,19 +213,24 @@
             \item \vspace{-1.6em}
             \begin{subparts}
                 \item The specified MLP is described by the following parameters: weight matrices $W^{[1]}$, $W^{[2]}$, $W^{[3]}$ and $W^{[4]}$, along bias vectors $b^{[1]}$, $b^{[2]}$, $b^{[3]}$ and $b^{[4]}$. For input data of dimention $d$, we have:
+                \vspace{0.5em}
                 \begin{itemize}
-                    \item $W^{[1]}, W^{[2]}, W^{[3]} \in \mathbb{R}^{d \times d}$
-                    \item $W^{[4]} \in \mathbb{R}^{2 \times d}$
-                    \item $b^{[1]}, b^{[2]}, b^{[3]} \in \mathbb{R}^{d}$
-                    \item $b^{[4]} \in \mathbb{R}^{2}$
+                    \item[$-$] $W^{[1]}, W^{[2]}, W^{[3]} \in \mathbb{R}^{d \times d}$
+                    \item[$-$] $W^{[4]} \in \mathbb{R}^{2 \times d}$
+                    \item[$-$] $b^{[1]}, b^{[2]}, b^{[3]} \in \mathbb{R}^{d}$
+                    \item[$-$] $b^{[4]} \in \mathbb{R}^{2}$
                 \end{itemize} 
-                Consequently, the total number of parameters is $3d^2 + 2d + 3d + 2 = 3d^2 + 5d + 2$. Given that the number of parameters is a reasonable estimate of the VC dimension of the model, for $d = 5$, we have an estimate of the VC dimension of the aforementioned MLP of $3 \cdot 5^2 + 5 \cdot 5 + 2 = 102$
-                \item For input data of dimensionality $d$, we know that $d_{\text{VC}} \le 3^d$, as $3^d$ is precisely the size of the input space (there are $d$ features with 3 possible values). Hence, it is impossible for the decision tree to shatter a greater number of points than $3^d$. On another hand, we note that any set of $3^d$ can be shattered by tree; for that purpose, given any dichotomy, it suffices to consider a tree with $d + 1$ levels with a single non-leaf node which is associated with a point in the set. In that node, we test equality w.r.t. that point, and we classify the example with the label of the corresponding point or continue down the tree accordingly. Thus, $d_{\text{VC}} = 3^d = 3^5 = 243$.
-                \item We again estimate VC dimension based on the number of parameters of the model. Given a point $\textbf{x} \in \mathbb{R}^{d}$ and a binary output variable $z \in \{0, 1\}$, the Bayesian Classifier estimates:
+                \vspace{0.5em}
+                Consequently, the total number of parameters is $3d^2 + 2d + 3d + 2 = 3d^2 + 5d + 2$. Given that the number of parameters is a reasonable estimate of the VC dimension of the model, for $d = 5$, we have an approximation of the VC dimension of the MLP of $3 \cdot 5^2 + 5 \cdot 5 + 2 = 102.$ 
+                \vspace{0.8em}
+                \item For input data of dimensionality $d$, we know that $d_{\text{VC}} \le 3^d$, as $3^d$ is precisely the size of the input space (there are $d$ features with 3 possible values). Hence, it is impossible for the decision tree to shatter a greater number of points than $3^d$. On another hand, we note that any set of size $3^d$ can be shattered by the decision tree; for that purpose, given any dichotomy, it suffices to consider a tree with $d + 1$ levels with a single non-leaf node which is associated with a point in the set. In that node, we test equality w.r.t. that point, and we classify the example with the label of the corresponding point or continue down the tree accordingly. Thus, $d_{\text{VC}} \ge 3^d$, and so $d_{\text{VC}} = 3^d = 3^5 = 243$.
+                \vspace{0.8em}
+                \item We again estimate VC dimension based on the number of parameters of the model. Given a point $\textbf{x} \in \mathbb{R}^{d}$ and a binary output variable $z$, the Bayesian Classifier estimates the following probability:
+                \vspace{0.4em}
                 \[
                     p(z = 1|\textbf{x}) = \frac{p(\textbf{x} | z = 1)p(z = 1)}{p(z = 0)p(\textbf{x} | z = 0) + p(z = 1)p(\textbf{x} | z = 1)}
                 \] 
-                Thus, we need to estimate the prior $p(z)$ and the likelihood $p(\textbf{x} | z)$. Since $z \sim \text{Bernoulli}(p)$, there is only one parameter associated with the prior; we also have that $\textbf{x}|z = k \sim \mathcal{N}(\mu_k, \Sigma_k) \; (k \in \{0,1\})$, where $\mu_k \in \mathbb{R}^{d}$ and $\Sigma_k \in \mathbb{R}^{d \times d}$. Since $\Sigma_k$ is symmetric, we can discard the lower diagonal part of the matrix. Thus, there are $1 + 2(d + d + \frac{d^2 - d}{2}) = 1 + 4d + d^2 - d = d^2 + 3d + 1$ parameters, and we have an approximate VC dimension of $5^2 + 3 \cdot 5 + 1 = 41$.
+                Thus, we need to estimate the prior $p(z)$ and the likelihood $p(\textbf{x} | z)$. We know that $z \sim \text{Bernoulli}(p)$, so there is only one parameter associated with the prior; we also have that $\textbf{x}|z = k \sim \mathcal{N}(\mu_k, \Sigma_k) \; (k \in \{0,1\})$, where $\mu_k \in \mathbb{R}^{d}$ and $\Sigma_k \in \mathbb{R}^{d \times d}$. Since $\Sigma_k$ is symmetric, we can discard the lower diagonal part of the matrix. Thus, there are $1 + 2(d + d + \frac{d^2 - d}{2}) = 1 + 4d + d^2 - d = d^2 + 3d + 1$ parameters, and we have an approximate VC dimension of $5^2 + 3 \cdot 5 + 1 = 41$.
             \end{subparts}
             \pagebreak
             \item \quad
@@ -255,11 +260,12 @@
             \item The produced solution yielded a Silhouette value of 0.5968 for 2-means and 0.52454 for 3-means. 
         \end{parts}
         \item \quad
+        \vspace{-1.2em}
         \begin{figure}[H]
             \centering
             \includegraphics{3means.pdf}
         \end{figure}
-        \item From the plot above, we can assert that the produced clustering solution lacks separation, since there is a considerable number of cases where instances with contiguous feature values are assigned to different clusters. Furthermore, cohesion 
+        \item Assuming that the selected features are able to correctly capture the structure of the dataset, the plot above shows that the clustering solution yields poor separation: the clusters are intertwined and there are instances with contiguous feature values that are assigned to different clusters. Furthermore, cohesion is also unsatisfactory: note the variance in cluster 1, which contains instances with feature values (4, 10) and (10, 2). This sub-optimal performance can be explained by the fact the dataset lacks the existence of circle-like concentrations of points that makes the application of $k$-means more suitable. 
     \end{questions}
 
     \pagebreak

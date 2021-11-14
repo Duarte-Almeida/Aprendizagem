@@ -43,16 +43,16 @@ inputs_top_features = mutual_info_2best.fit_transform(inputs, outputs)
 extracted_features = data.iloc[:, :-1].columns[mutual_info_2best.get_support()].values
 cluster_centers = clusters_3means.cluster_centers_[:, mutual_info_2best.get_support()]
 
-
 fig, ax = plt.subplots()
 for index, c in zip(np.unique(clusters_3means.labels_), ("r", "g", "b")): 
     ax.scatter(inputs_top_features[:, 0][clusters_3means.labels_ == index], \
                inputs_top_features[:, 1][clusters_3means.labels_ == index], \
                color = c, alpha = 0.2, label = "$\\mathrm{{Cluster\;{}}}$".format(index))
     ax.scatter(cluster_centers[index, 0], cluster_centers[index, 1], \
-               color = c, marker = "+", linewidths = 0.5, s = 150, label = "$\\mathrm{{Cluster\;{}\;centroid}}$".format(index))
+               color = c, marker = "+", label = "$\\mathrm{{Cluster\;{}\;centroid}}$".format(index), \
+               linewidths = 0.5, s = 150)
 
-plt.legend(loc = "best", prop = {'size': 9}, markerscale = 0.75) 
+plt.legend(loc = "lower right", prop = {'size': 6}, markerscale = 0.50, ncol = 3) 
 ax.set_xlabel("$\mathrm{{ {} }}$".format(extracted_features[0].replace("_", "\;")))
 ax.set_ylabel("$\mathrm{{ {} }}$".format(extracted_features[1].replace("_", "\;")))
 plt.savefig("output/3means.pdf")
