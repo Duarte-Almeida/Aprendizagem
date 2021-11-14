@@ -227,16 +227,22 @@
                 \] 
                 Thus, we need to estimate the prior $p(z)$ and the likelihood $p(\textbf{x} | z)$. Since $z \sim \text{Bernoulli}(p)$, there is only one parameter associated with the prior; we also have that $\textbf{x}|z = k \sim \mathcal{N}(\mu_k, \Sigma_k) \; (k \in \{0,1\})$, where $\mu_k \in \mathbb{R}^{d}$ and $\Sigma_k \in \mathbb{R}^{d \times d}$. Since $\Sigma_k$ is symmetric, we can discard the lower diagonal part of the matrix. Thus, there are $1 + 2(d + d + \frac{d^2 - d}{2}) = 1 + 4d + d^2 - d = d^2 + 3d + 1$ parameters, and we have an approximate VC dimension of $5^2 + 3 \cdot 5 + 1 = 41$.
             \end{subparts}
-            \item In comparison the other models, the VC dimension of the decision tree starts to explode for data dimensionalities as low as 10, requiring exponentially larger datasets to mitigate overfitting risks.
+            \pagebreak
+            \item \quad
+            \vspace{-3.0em}
             \begin{figure}[H]
                 \centering
                 \includegraphics[scale = 0.75]{vc_4_a.pdf}
             \end{figure}
-            \item From the plot below, we can that the VC dimension of the decision tree starts
+            In comparison the other models, the VC dimension of the decision tree starts to explode exponentially for data dimensionalities as low as 12 (thus requiring exponentially larger datasets to mitigate overfitting risks).
+            \vspace{1em}
+            \item \quad 
+            \vspace{-3.0em}
             \begin{figure}[H]
                 \centering
                 \includegraphics[scale = 0.75]{vc_4_b.pdf}
             \end{figure}
+            We estimate that $d_{\text{VC}}(\text{MLP}) > d_{\text{VC}}(\text{Bayesian Classifier})$, with these values only diverging for $m > 200$ (albeit by not more than a multiplying constant, given their similar asymptotic behaviour).
         \end{parts}
     \end{questions}
     \section{Programming and critical analysis}
@@ -251,13 +257,14 @@
         \item \quad
         \begin{figure}[H]
             \centering
-            \includegraphics[scale = 0.75]{3means.pdf}
+            \includegraphics{3means.pdf}
         \end{figure}
-        \item Lezz go 
+        \item From the plot above, we can assert that the produced clustering solution lacks separation, since there is a considerable number of cases where instances with contiguous feature values are assigned to different clusters. Furthermore, cohesion 
     \end{questions}
-    %\pagebreak
-    %\section{Appendix}
-    %\inputminted{python}{src/part.py}
+
+    \pagebreak
+    \section{Appendix}
+    \inputminted{python}{src/part02.py}
    
     
     

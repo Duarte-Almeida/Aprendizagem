@@ -21,8 +21,8 @@ def main():
     ax.plot(dim_1, vc_dimension_Bayes(dim_1), label =  "$d_{\\mathrm{VC}}(\\mathrm{Bayesian \; Classifier})$", linewidth=2)
     ax.plot(dim_1, vc_dimension_MLP(dim_1), label = "$d_{\\mathrm{VC}}(\\mathrm{MLP})$", linestyle = "dashed", linewidth=1, markersize=12)
     ax.plot(dim_1, vc_dimension_DT(dim_1), label =  "$d_{\\mathrm{VC}}(\\mathrm{Decision \; Tree})$", linewidth=2)
-    ax.set_xlabel("data dimensionality")
-    ax.set_ylabel("VC dimension")
+    ax.set_xlabel("$m\;(\mathrm{data\;dimensionality})$")
+    ax.set_ylabel("$d_{\mathrm{VC}}\;(\mathrm{VC\;dimension})$")
     ax.legend(loc = "best")
     plt.savefig("output/vc_4_a.pdf")
 
@@ -30,8 +30,8 @@ def main():
 
     plt.plot(dim_2, vc_dimension_MLP(dim_2), label = "$d_{\\mathrm{VC}}(\\mathrm{MLP})$")
     plt.plot(dim_2, vc_dimension_Bayes(dim_2), label =  "$d_{\\mathrm{VC}}(\\mathrm{Bayesian \; Classifier})$")
-    ax.set_xlabel("data dimensionality")
-    ax.set_ylabel("VC dimension")
+    ax.set_xlabel("$m\;(\mathrm{data\;dimensionality})$")
+    ax.set_ylabel("$d_{\mathrm{VC}}\;(\mathrm{VC\;dimension})$")
 
     plt.legend(loc = "best")
     plt.savefig("output/vc_4_b.pdf")
