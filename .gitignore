@@ -1,0 +1,13 @@
+# Ignore TeX generated files #
+*.fls
+*.synctex.gz
+*.fls
+*.log
+*.fdb_latexmk
+*.aux
+
+# ignore .DS_Store
+.DS_Store
+
+*.pygstyle
+*.pgtex
